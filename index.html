@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Undangan Haji</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+<style>
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html, body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#000;
+  font-family:Poppins,sans-serif;
+}
+
+/* OPENING */
+#opening{
+  position:fixed;
+  inset:0;
+  background:url('bg.jpg') center/cover no-repeat;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  z-index:9999;
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.35);
+}
+
+.top-text{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  margin-top:80px;
+}
+
+.small{
+  color:#ddd;
+  font-size:22px;
+  letter-spacing:2px;
+  margin-bottom:10px;
+}
+
+.top-text h1{
+  color:#fff;
+  font-family:'Playfair Display';
+  font-size:32px;
+}
+
+/* BOX TAMU */
+.guest-box{
+  position:relative;
+  z-index:2;
+  margin:20px;
+  margin-bottom:40px;
+  padding:25px;
+  border-radius:20px;
+  background:rgba(0,0,0,.4);
+  text-align:center;
+}
+
+.kepada{color:#ccc;}
+
+.nama-tamu{
+  color:gold;
+  text-shadow:0 0 10px rgba(255,215,0,.6);
+  font-size:20px;
+  font-weight:bold;
+  margin:10px 0;
+}
+
+/* BUTTON */
+.btn{
+  margin-top:15px;
+  padding:14px 35px;
+  border:none;
+  border-radius:40px;
+  background:linear-gradient(45deg,gold,#ffd700);
+  font-weight:bold;
+  box-shadow:0 5px 20px rgba(255,215,0,.4);
+}
+
+/* SWIPER */
+.swiper, .swiper-wrapper, .swiper-slide{
+  width:100vw;
+  height:100dvh;
+}
+
+.swiper-slide{
+  position:relative;
+  display:flex;
+}
+
+/* BACKGROUND */
+.bg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  background:url('bg.jpg') center/cover no-repeat;
+  filter:brightness(.65) contrast(1.15);
+}
+  
+@keyframes zoomBg{
+  from{transform:scale(1);}
+  to{transform:scale(1.1);}
+}
+
+/* OVERLAY */
+.swiper-slide::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,.75) 20%,
+    rgba(0,0,0,.4) 60%,
+    transparent
+  );
+}
+
+/* CONTENT */
+.content{
+  position:relative;
+  z-index:2;
+  width:100%;
+  height:100%;
+
+  display:flex;
+  flex-direction:column;
+
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+  padding:20px;
+  padding-bottom:80px;
+}
+
+.content span{
+  color:#fff;
+  font-size:16px;
+  text-shadow:0 2px 6px rgba(0,0,0,.8);
+  margin:6px 0;
+}
+
+/* ========================= */
+/* 💎 COUPLE PREMIUM */
+/* ========================= */
+
+.couple-vertical{
+  margin-top:25px;
+  width:100%;
+  max-width:360px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  opacity:0;
+}
+
+.row.left{
+  justify-content:flex-start;
+  animation:slideLeft .8s forwards;
+}
+
+.row.right{
+  justify-content:flex-end;
+  animation:slideRight .8s forwards;
+  animation-delay:.3s;
+}
+
+.row.right .nama{
+  order:1;
+  text-align:right;
+}
+
+.row.right img{
+  order:2;
+}
+
+/* FOTO */
+.foto-besar{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid gold;
+  animation:glow 3s infinite;
+}
+
+/* GLOW */
+@keyframes glow{
+  0%{box-shadow:0 0 5px rgba(255,215,0,.4);}
+  50%{box-shadow:0 0 20px rgba(255,215,0,.9);}
+  100%{box-shadow:0 0 5px rgba(255,215,0,.4);}
+}
+
+/* NAMA */
+.nama{
+  color:#fff;
+  font-size:18px;
+  font-weight:600;
+  text-shadow:0 0 10px rgba(255,215,0,.6);
+}
+
+/* & */
+.and{
+  color:gold;
+  font-size:26px;
+  font-weight:bold;
+  text-align:center;
+  position:relative;
+}
+
+.and::before,
+.and::after{
+  content:'';
+  position:absolute;
+  top:50%;
+  width:40px;
+  height:1px;
+  background:gold;
+  opacity:.6;
+}
+
+.and::before{left:-50px;}
+.and::after{right:-50px;}
+
+/* ANIMASI */
+@keyframes slideLeft{
+  from{opacity:0; transform:translateX(-50px);}
+  to{opacity:1; transform:translateX(0);}
+}
+
+@keyframes slideRight{
+  from{opacity:0; transform:translateX(50px);}
+  to{opacity:1; transform:translateX(0);}
+}
+
+/* ✅ PENUTUP */
+.penutup{
+  margin-top:15px;
+  color:#fff;
+  font-size:16px;
+  text-align:center;
+  line-height:1.5;
+  max-width:320px;
+  opacity:.9;
+  text-shadow:0 2px 6px rgba(0,0,0,.8);
+}
+
+/* NAV */
+.nav{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:100vw;
+  height:70px;
+  background:rgba(0,0,0,.85);
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:999;
+}
+
+.nav a{
+  color:#aaa;
+  text-decoration:none;
+  font-size:12px;
+}
+
+.nav a.active{color:gold;}
+
+/* MUTE */
+.mute{
+  position:fixed;
+  top:20px;
+  right:20px;
+  z-index:9999;
+  background:rgba(0,0,0,.6);
+  color:#fff;
+  border:none;
+  border-radius:50%;
+  width:45px;
+  height:45px;
+}
+
+/* ANIMASI TEXT */
+.fade span{
+  opacity:0;
+  transform:translateY(30px);
+  animation:fadeUp .8s forwards;
+}
+
+.fade span:nth-child(1){animation-delay:.3s}
+.fade span:nth-child(2){animation-delay:.6s}
+
+@keyframes fadeUp{
+  to{opacity:1;transform:translateY(0)}
+}
+
+
+.jadwal-box{
+  width:100%;
+  max-width:360px;
+  display:flex;
+  border-radius:25px;
+  overflow:hidden;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.3);
+  box-shadow:0 10px 40px rgba(0,0,0,.4);
+  animation:fadeUp 1s ease;
+}
+
+/* KIRI */
+.tanggal-box{
+  width:110px;
+  background:rgba(255,255,255,0.2);
+  text-align:center;
+  padding:15px 10px;
+}
+
+.tgl{
+  font-size:42px;
+  font-weight:bold;
+  color:#000;
+}
+
+.bulan, .tahun{
+  font-size:16px;
+  color:#000;
+}
+
+/* KANAN */
+.detail-box{
+  flex:1;
+  padding:20px;
+  color:#fff;
+}
+
+.detail-box h2{
+  font-size:22px;
+  margin-bottom:10px;
+}
+
+.detail-box p{
+  font-size:14px;
+  margin:5px 0;
+}
+
+/* BUTTON MAP */
+.btn-map{
+  margin-top:15px;
+  padding:12px;
+  width:100%;
+  border:none;
+  border-radius:25px;
+  background:#fff;
+  font-weight:bold;
+}
+
+.countdown-box{
+  margin-top:20px;
+  text-align:center;
+  color:#fff;
+}
+
+.countdown-box p{
+  font-size:14px;
+  margin-bottom:8px;
+  opacity:.8;
+}
+
+#countdown{
+  font-size:20px;
+  font-weight:bold;
+  letter-spacing:1px;
+  color:gold;
+  text-shadow:0 0 10px rgba(255,215,0,.7);
+}
+
+.countdown-grid{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:10px;
+}
+
+.cd-box{
+  background:#e8d9a8;
+  color:#333;
+  width:70px;
+  height:70px;
+  border-radius:12px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+
+.cd-box span{
+  font-size:20px;
+  font-weight:bold;
+}
+
+.cd-box p{
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+.judul-jadwal {
+  font-size:16px;      /* sama dengan .detail-box h2 */
+  color:#fff;          /* sama dengan .detail-box text color */
+  font-weight:600;     /* agar lebih tebal */
+  margin-bottom:16px;  /* beri jarak dengan box jadwal */
+  text-align:center;   /* agar rata tengah */
+  text-shadow:0 0 10px rgba(255,215,0,.6); /* opsional, jika ingin efek glow */
+}
+
+.video-box{
+  width:100%;
+  max-width:360px;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 10px 40px rgba(0,0,0,.6);
+  animation:fadeUp 1s ease;
+}
+
+.video-box video{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:20px;
+}
+
+.couple-sejajar{
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  gap:10px;
+  margin-top:20px;
+}
+
+/* FOTO PNG */
+.foto-png{
+  width:140px;
+  height:auto;
+  object-fit:contain;
+
+  /* efek glow premium */
+  filter:drop-shadow(0 10px 20px rgba(0,0,0,.6))
+         drop-shadow(0 0 10px rgba(255,215,0,.4));
+
+  animation:fadeUp 1s ease;
+}
+
+/* POSISI */
+.kiri{
+  transform:translateX(-10px);
+}
+
+.kanan{
+  transform:translateX(10px);
+}
+
+
+
+  
+</style>
+</head>
+
+<body>
+
+<!-- OPENING -->
+<div id="opening">
+  <div class="overlay"></div>
+
+  <div class="top-text">
+    <p class="small">Walimatus Safar Haji</p>
+    <h1>Bapak & Ibu Erwan</h1>
+  </div>
+
+  <div class="guest-box">
+    <p class="kepada">Kepada Yth. Bapak/Ibu/Sdr/i :</p>
+    <p id="nama" class="nama-tamu"></p>
+    <button class="btn" onclick="buka()">Buka Undangan</button>
+  </div>
+</div>
+
+<audio id="musik" loop muted>
+<source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3">
+</audio>
+
+<button class="mute" onclick="toggleMusic()">🔊</button>
+
+<div class="swiper">
+<div class="swiper-wrapper">
+
+<!-- HOME -->
+<div class="swiper-slide">
+<div class="bg"></div>
+<div class="content fade">
+
+<span>اَلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</span>
+<span>Dengan memohon ridho Allah SWT kami bermaksud menyelenggarakan Tasyakuran Walimatus Safar Haji</span>
+
+<div class="couple-vertical">
+
+  <div class="row left">
+    <img src="foto1.jpg" class="foto-besar">
+    <div class="nama">Erwan Kurniawan</div>
+  </div>
+
+  <div class="and">&</div>
+
+  <div class="row right">
+    <div class="nama">Rr. Rizqomariyati</div>
+    <img src="foto2.jpg" class="foto-besar">
+  </div>
+
+</div>
+
+<p class="penutup"></p>
+
+</div>
+</div>
+
+<!-- ACARA -->
+<!-- JADWAL -->
+<div class="swiper-slide">
+<div class="bg"></div>
+
+<div class="content">
+
+<!-- ✅ TAMBAHAN TEKS -->
+<p class="judul-jadwal">
+  yang insya Allah akan diadakan pada
+</p>
+  
+<div class="jadwal-box">
+
+  <!-- KIRI (TANGGAL) -->
+  <div class="tanggal-box">
+    <div class="tgl">07</div>
+    <div class="bulan">APR</div>
+    <div class="tahun">2026</div>
+  </div>
+
+  <!-- KANAN (DETAIL) -->
+  <div class="detail-box">
+
+    <h3>Hari Selasa</h3>
+
+    <p>⏰ 11:00 - 14:00 WITA</p>
+    <p>📍 Jl. Kerangkeng Desa Banyumulek (samping Pondok Pesantren Abnur Abhari) Kecamatan Kediri - Lobar</p>
+
+    <button class="btn-map" onclick="map()">
+      PETUNJUK ARAH →
+    </button>
+
+  </div>
+
+</div> <!-- ✅ WAJIB DITUTUP DI SINI -->
+
+<!-- ✅ PINDAH KE LUAR -->
+<div class="countdown-box">
+  <p>Menuju Acara</p>
+  
+  <div class="countdown-grid">
+
+  <div class="cd-box">
+    <span id="hari">0</span>
+    <p>HARI</p>
+  </div>
+
+  <div class="cd-box">
+    <span id="jam">0</span>
+    <p>JAM</p>
+  </div>
+
+  <div class="cd-box">
+    <span id="menit">0</span>
+    <p>MENIT</p>
+  </div>
+
+  <div class="cd-box">
+    <span id="detik">0</span>
+    <p>DETIK</p>
+  </div>
+
+</div>
+</div>
+
+</div> <!-- ✅ content -->
+</div> <!-- ✅ swiper-slide -->
+
+ 
+<!-- TERIMA KASIH -->
+<div class="swiper-slide">
+<div class="bg"></div>
+<div class="content fade">
+
+<span>Mohon Doa Restu</span>
+
+<span>
+Semoga kami diberikan kesehatan, kelancaran, dan kemudahan dalam menjalankan ibadah haji,
+serta menjadi haji yang mabrur dan mabruroh.
+</span>
+
+<span>
+Kami juga memohon doa agar senantiasa diberikan keselamatan
+hingga kembali ke tanah air dengan penuh keberkahan.
+</span>
+
+<span>Merupakan suatu kehormatan dan kebahagiaan kami, apabila Bapak/Ibu/Saudara/i
+berkenan hadir pada acara kami.</span> 
+<span>Atas kehadiran dan doa Bapak/Ibu/Saudara/i kami ucapkan terima kasih.</span>
+
+<!-- FOTO SEJAJAR -->
+<div class="couple-sejajar">
+
+  <img src="foto3.png" class="foto-png kiri"> 
+  
+</div>
+
+  
+</div>
+</div>
+  
+
+
+
+
+
+
+
+  
+<!-- VIDEO -->
+<div class="swiper-slide">
+<div class="bg"></div>
+
+<div class="content">
+
+<h2 style="color:#fff; margin-bottom:15px;">
+  Video Kenangan
+</h2>
+
+<div class="video-box">
+
+  <video id="videoHaji" controls muted playsinline>
+  <source src="video.mp4" type="video/mp4"></video>
+
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="nav">
+<a onclick="go(0)" class="active">Home</a>
+<a onclick="go(1)">Acara</a>
+<a onclick="go(2)">Terima kasih</a>
+<a onclick="go(3)">Kesan</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+
+const p=new URLSearchParams(window.location.search)
+const namaParam=p.get('to')
+document.getElementById('nama').innerText =
+  namaParam ? decodeURIComponent(namaParam) : 'Tamu Undangan'
+
+function buka(){
+  const musik=document.getElementById('musik')
+  const opening=document.getElementById('opening')
+  opening.style.opacity='0'
+  setTimeout(()=>opening.style.display='none',1000)
+  musik.muted=false
+  musik.play().catch(()=>{})
+}
+
+function wa(){
+  const nama=namaParam||'Tamu'
+  const pesan=`Assalamu'alaikum, saya ${nama} akan hadir di acara tasyakuran haji.`
+  window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(pesan)}`)
+}
+
+function toggleMusic(){
+  const m=document.getElementById('musik')
+  m.muted=!m.muted
+}
+
+const swiper=new Swiper('.swiper',{
+  direction:'vertical',
+  speed:900,
+  mousewheel:true,
+  touchReleaseOnEdges:true,
+  on:{
+    slideChange:function(){
+      document.querySelectorAll('.nav a').forEach((el,i)=>{
+        el.classList.toggle('active',i===this.activeIndex)
+      })
+    }
+  }
+})
+  
+function go(i){
+  swiper.slideTo(i, 800);
+}
+  
+function map(){
+  window.open("https://maps.google.com/?q=karang bedil mataram")
+}
+
+
+const targetDate = new Date("Apr 07, 2026 11:00:00").getTime();
+
+setInterval(function(){
+
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  const hari = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const jam = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const menit = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const detik = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("hari").innerText = hari;
+document.getElementById("jam").innerText = jam;
+document.getElementById("menit").innerText = menit;
+document.getElementById("detik").innerText = detik;
+},1000);
+
+
+ document.addEventListener("click", function () {
+  const v = document.getElementById("videoHaji");
+  if(v){
+    v.muted = false;
+    v.play().catch(()=>{});
+  }
+}, { once: true }); 
+ 
+</script>
+
+</body>
+</html>
