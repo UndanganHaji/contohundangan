@@ -76,11 +76,25 @@ body{
 .icon{width:36px;height:36px;font-size:14px;background:linear-gradient(135deg,#2c6fb7,#4da3ff);border-radius:10px;display:flex;align-items:center;justify-content:center;color:white;}
 .value{font-size:16px;font-weight:600;}
 
+/* 🔥 FOTO1 BALIK LAGI */
+.data-bg{
+    width:40%;
+    background:url('foto1.png') no-repeat right bottom;
+    background-size:contain;
+    opacity:0.9;
+}
+
 /* RASIO */
 .grid-3{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;}
 .ratio{background:#f4f9ff;padding:15px;border-radius:12px;}
-.ratio-left{display:flex;align-items:center;gap:10px;}
-.circle{width:40px;height:40px;background:#2c6fb7;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;}
+
+.ratio-bottom img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    margin-top:15px;
+    border-radius:12px;
+}
 
 button{
     margin-top:15px;
@@ -96,6 +110,8 @@ button{
 /* RESPONSIVE */
 @media(max-width:768px){
     .card-data{flex-direction:column;}
+    .data-content,.data-bg{width:100%;}
+    .data-bg{height:200px;}
     .grid-3{grid-template-columns:1fr 1fr;}
 }
 </style>
@@ -147,6 +163,7 @@ button{
 <div class="badge">Tahun 2025</div>
 </div>
 
+<!-- DATA -->
 <div class="section">
 <div class="section-title">Ikhtisar Data Keuangan Penting</div>
 
@@ -163,15 +180,20 @@ button{
 
 </div>
 </div>
+
+<!-- 🔥 FOTO1 -->
+<div class="data-bg"></div>
+
 </div>
 </div>
 
+<!-- RASIO -->
 <div class="section">
 <div class="section-title">Rasio Keuangan</div>
 
 <div class="card">
-<div class="grid-3">
 
+<div class="grid-3">
 <div class="ratio">KPMM <span class="value" id="r_kpmm">0%</span></div>
 <div class="ratio">NPL Neto <span class="value" id="r_nplnet">0%</span></div>
 <div class="ratio">NPL Gross <span class="value" id="r_nplgross">0%</span></div>
@@ -180,8 +202,13 @@ button{
 <div class="ratio">NIM <span class="value" id="r_nim">0%</span></div>
 <div class="ratio">LDR <span class="value" id="r_ldr">0%</span></div>
 <div class="ratio">Cash <span class="value" id="r_cash">0%</span></div>
-
 </div>
+
+<!-- 🔥 FOTO2 -->
+<div class="ratio-bottom">
+<img src="foto2.png">
+</div>
+
 </div>
 </div>
 
