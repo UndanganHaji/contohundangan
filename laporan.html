@@ -265,7 +265,22 @@ button {
 
 
 
+.form-box{
+    background:white;
+    margin:20px auto;
+    max-width:1000px;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
 
+.form-box input{
+    width:100%;
+    padding:8px;
+    margin:5px 0;
+    border-radius:8px;
+    border:1px solid #ddd;
+}
 
 
 
@@ -275,7 +290,33 @@ button {
 </head>
 
 <body>
+<!-- TAMBAHKAN DI ATAS CONTAINER (setelah <body>) -->
 
+<div class="form-box">
+    <h3>Input Data Keuangan</h3>
+
+    <input id="i_pendapatan" placeholder="Pendapatan Operasional">
+    <input id="i_beban" placeholder="Beban Operasional">
+    <input id="i_beban_lain" placeholder="Beban Lain">
+    <input id="i_pendapatan_lain" placeholder="Pendapatan Non Operasional">
+    <input id="i_laba" placeholder="Laba Tahun Berjalan">
+
+    <h4>Rasio (%)</h4>
+    <input id="i_kpmm" placeholder="KPMM">
+    <input id="i_nplnet" placeholder="NPL Neto">
+    <input id="i_nplgross" placeholder="NPL Gross">
+    <input id="i_roa" placeholder="ROA">
+    <input id="i_bopo" placeholder="BOPO">
+    <input id="i_nim" placeholder="NIM">
+    <input id="i_ldr" placeholder="LDR">
+    <input id="i_cash" placeholder="Cash Ratio">
+
+    <button onclick="updateData()">Update Data</button>
+</div>
+    
+
+
+    
 <!-- BACKGROUND -->
 <div class="bg-wrapper">
     <div class="sky"></div>
@@ -311,17 +352,17 @@ button {
 <div class="data-content">
 <div class="grid-2">
 
-<div class="item"><div class="icon"><i class="fas fa-coins"></i></div><div><div>Pendapatan Operasional</div><div class="value">84.656.240.801</div></div></div>
+<div class="item"><div class="icon"><i class="fas fa-coins"></i></div><div><div>Pendapatan Operasional</div><div class="value" id="v_pendapatan">84.656.240.801</div></div></div>
 
-<div class="item"><div class="icon"><i class="fas fa-chart-line"></i></div><div><div>Beban Operasional</div><div class="value">60.320.989.108</div></div></div>
+<div class="item"><div class="icon"><i class="fas fa-chart-line"></i></div><div><div>Beban Operasional</div><div class="value" id="v_beban">60.320.989.108</div></div></div>
 
-<div class="item"><div class="icon"><i class="fas fa-file-invoice"></i></div><div><div>Beban Papat Operasional</div><div class="value">60.320.989.108</div></div></div>
+<div class="item"><div class="icon"><i class="fas fa-file-invoice"></i></div><div><div>Beban Non Operasional</div><div class="value">60.320.989.108</div></div></div>
 
-<div class="item"><div class="icon"><i class="fas fa-wallet"></i></div><div><div>Beban Operasional Lain</div><div class="value">751.454.000</div></div></div>
+<div class="item"><div class="icon"><i class="fas fa-wallet"></i></div><div><div>Beban Operasional Lain</div><div class="value" id="v_beban_lain">751.454.000</div></div></div>
 
-<div class="item"><div class="icon"><i class="fas fa-money-bill-wave"></i></div><div><div>Pendapatan Non Operasional</div><div class="value">750.000</div></div></div>
+<div class="item"><div class="icon"><i class="fas fa-money-bill-wave"></i></div><div><div>Pendapatan Non Operasional</div><div class="value" id="v_pendapatan_lain">750.000</div></div></div>
 
-<div class="item"><div class="icon"><i class="fas fa-trophy"></i></div><div><div>Laba Tahun Berjalan</div><div class="value">21.264.204.303</div></div></div>
+<div class="item"><div class="icon"><i class="fas fa-trophy"></i></div><div><div>Laba Tahun Berjalan</div><div class="value" id="v_laba">21.264.204.303</div></div></div>
 
 </div>
 </div>
@@ -339,14 +380,14 @@ button {
 
 <div class="grid-3">
 
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-user"></i></div>KPMM<div class="value">49,06%</div></div></div>
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-percent"></i></div>NPL Neto<div class="value">18,04%</div></div></div>
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-chart-bar"></i></div>NPL Gross<div class="value">19,08%</div></div></div>
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-chart-pie"></i></div>ROA<div class="value">2,09%</div></div></div>
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-balance-scale"></i></div>BOPO<div class="value">68,05%</div></div></div>
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-chart-area"></i></div>NIM<div class="value">7,07%</div></div></div>
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-exchange-alt"></i></div>LDR<div class="value">69,18%</div></div></div>
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-wallet"></i></div>Cash Ratio<div class="value">15,26%</div></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-user"></i></div>KPMM<div class="value" id="r_kpmm">49,06%</div></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-percent"></i></div>NPL Neto<div class="value" id="r_nplnet">18,04%</div></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-chart-bar"></i></div>NPL Gross<div class="value" id="r_nplgross">19,08%</div></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-chart-pie"></i></div>ROA<div class="value" id="r_roa">2,09%</div></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-balance-scale"></i></div>BOPO<div class="value" id="r_bopo">68,05%</div></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-chart-area"></i></div>NIM<div class="value" id="r_nim">7,07%</div></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-exchange-alt"></i></div>LDR<div class="value" id="r_ldr">69,18%</div></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-wallet"></i></div>Cash Ratio<div class="value" id="r_cash">15,26%</div></div></div>
 
 </div>
 
@@ -376,5 +417,39 @@ function downloadPNG() {
 }
 </script>
 
+<script>
+function formatAngka(x){
+    return new Intl.NumberFormat('id-ID').format(x);
+}
+
+function updateData(){
+
+    document.getElementById('v_pendapatan').innerText =
+        formatAngka(i_pendapatan.value);
+
+    document.getElementById('v_beban').innerText =
+        formatAngka(i_beban.value);
+
+    document.getElementById('v_beban_lain').innerText =
+        formatAngka(i_beban_lain.value);
+
+    document.getElementById('v_pendapatan_lain').innerText =
+        formatAngka(i_pendapatan_lain.value);
+
+    document.getElementById('v_laba').innerText =
+        formatAngka(i_laba.value);
+
+    // RASIO
+    document.getElementById('r_kpmm').innerText = i_kpmm.value + "%";
+    document.getElementById('r_nplnet').innerText = i_nplnet.value + "%";
+    document.getElementById('r_nplgross').innerText = i_nplgross.value + "%";
+    document.getElementById('r_roa').innerText = i_roa.value + "%";
+    document.getElementById('r_bopo').innerText = i_bopo.value + "%";
+    document.getElementById('r_nim').innerText = i_nim.value + "%";
+    document.getElementById('r_ldr').innerText = i_ldr.value + "%";
+    document.getElementById('r_cash').innerText = i_cash.value + "%";
+}
+</script>
+    
 </body>
 </html>
