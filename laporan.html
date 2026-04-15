@@ -38,6 +38,8 @@ body{
     width:100%;
     padding:8px;
     margin:5px 0;
+    border-radius:8px;
+    border:1px solid #ddd;
 }
 
 .overlay{
@@ -48,22 +50,65 @@ body{
     z-index:998;
 }
 
-/* LAYOUT ASLI */
+/* LAYOUT */
 .container{max-width:1000px;margin:auto;padding:20px;}
 .header{text-align:center;padding:40px 10px 20px;}
-.badge{background:#2c6fb7;color:white;padding:8px 20px;border-radius:20px;}
+.header h1{font-size:34px;color:#1f4f82;}
+.header h2{font-size:22px;}
 
+.badge{
+    margin-top:15px;
+    display:inline-block;
+    background:linear-gradient(135deg,#2c6fb7,#4da3ff);
+    color:white;
+    padding:10px 25px;
+    border-radius:30px;
+}
+
+/* SECTION */
 .section{margin-top:25px;}
-.section-title{background:#2c6fb7;color:white;padding:10px;border-radius:10px 10px 0 0;}
+.section-title{
+    background:linear-gradient(135deg,#2c6fb7,#4da3ff);
+    color:white;
+    padding:12px 25px;
+    border-radius:20px 20px 0 0;
+    display:inline-block;
+}
 
-.card{background:white;padding:15px;border-radius:0 10px 10px 10px;}
+/* CARD */
+.card{
+    background:white;
+    padding:18px;
+    border-radius:0 20px 20px 20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
 
+/* DATA */
 .card-data{display:flex;}
-.data-content{width:60%;}
+.data-content{width:58%;}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 
-.item{background:#f4f9ff;padding:8px;border-radius:10px;}
-.value{font-weight:bold;}
+.item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:#f4f9ff;
+    padding:8px 10px;
+    border-radius:12px;
+}
+
+.icon{
+    width:36px;
+    height:36px;
+    background:linear-gradient(135deg,#2c6fb7,#4da3ff);
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+}
+
+.value{font-weight:600;}
 
 .data-bg{
     width:40%;
@@ -72,26 +117,33 @@ body{
 }
 
 /* RASIO */
-.grid-3{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
-.ratio{background:#f4f9ff;padding:10px;border-radius:10px;}
+.grid-3{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;}
+
+.ratio{
+    background:#f4f9ff;
+    padding:15px;
+    border-radius:12px;
+}
 
 .ratio-bottom img{
     width:100%;
     height:180px;
     object-fit:cover;
-    margin-top:10px;
-    border-radius:10px;
+    margin-top:15px;
+    border-radius:12px;
 }
 
 button{
+    margin-top:10px;
     padding:10px 20px;
     border:none;
-    border-radius:20px;
-    background:#2c6fb7;
+    border-radius:30px;
+    background:linear-gradient(135deg,#2c6fb7,#4da3ff);
     color:white;
     cursor:pointer;
 }
 
+/* RESPONSIVE */
 @media(max-width:768px){
     .card-data{flex-direction:column;}
     .data-content,.data-bg{width:100%;}
@@ -144,18 +196,19 @@ button{
 
 <!-- DATA -->
 <div class="section">
-<div class="section-title">Data Keuangan</div>
+<div class="section-title">Ikhtisar Data Keuangan</div>
 
 <div class="card card-data">
+
 <div class="data-content">
 <div class="grid-2">
 
-<div class="item">Pendapatan <div class="value" id="v_pendapatan">0</div></div>
-<div class="item">Beban <div class="value" id="v_beban">0</div></div>
-<div class="item">Beban Papat <div class="value" id="v_beban_papat">0</div></div>
-<div class="item">Beban Lain <div class="value" id="v_beban_lain">0</div></div>
-<div class="item">Pendapatan Non Ops <div class="value" id="v_pendapatan_lain">0</div></div>
-<div class="item">Laba <div class="value" id="v_laba">0</div></div>
+<div class="item"><div class="icon"><i class="fas fa-coins"></i></div><div>Pendapatan<div class="value" id="v_pendapatan">0</div></div></div>
+<div class="item"><div class="icon"><i class="fas fa-chart-line"></i></div><div>Beban<div class="value" id="v_beban">0</div></div></div>
+<div class="item"><div class="icon"><i class="fas fa-file-invoice"></i></div><div>Beban Papat<div class="value" id="v_beban_papat">0</div></div></div>
+<div class="item"><div class="icon"><i class="fas fa-wallet"></i></div><div>Beban Lain<div class="value" id="v_beban_lain">0</div></div></div>
+<div class="item"><div class="icon"><i class="fas fa-money-bill-wave"></i></div><div>Pendapatan Non Ops<div class="value" id="v_pendapatan_lain">0</div></div></div>
+<div class="item"><div class="icon"><i class="fas fa-trophy"></i></div><div>Laba<div class="value" id="v_laba">0</div></div></div>
 
 </div>
 </div>
@@ -172,7 +225,6 @@ button{
 <div class="card">
 
 <div class="grid-3">
-
 <div class="ratio">KPMM <span id="r_kpmm">0%</span></div>
 <div class="ratio">NPL Neto <span id="r_nplnet">0%</span></div>
 <div class="ratio">NPL Gross <span id="r_nplgross">0%</span></div>
@@ -181,7 +233,6 @@ button{
 <div class="ratio">NIM <span id="r_nim">0%</span></div>
 <div class="ratio">LDR <span id="r_ldr">0%</span></div>
 <div class="ratio">Cash <span id="r_cash">0%</span></div>
-
 </div>
 
 <div class="ratio-bottom">
@@ -205,7 +256,7 @@ function formatInput(el){
     el.value = new Intl.NumberFormat('id-ID').format(v);
 }
 
-/* AUTO FORMAT + SAVE */
+/* AUTO FORMAT */
 document.querySelectorAll(".form-box input").forEach(i=>{
     i.addEventListener("input",()=>{
         formatInput(i);
