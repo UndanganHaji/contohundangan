@@ -18,17 +18,32 @@ body{
     color:#1f3c5b;
 }
 
+/* TOGGLE BUTTON */
+.toggle-btn{
+    display:block;
+    margin:15px auto;
+    padding:10px 25px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(135deg,#2c6fb7,#4da3ff);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+}
+
 /* FORM */
 .form-box{
+    position:relative;
+    z-index:5;
     max-width:1000px;
-    margin:15px auto;
+    margin:10px auto;
     background:white;
     padding:15px;
     border-radius:15px;
     box-shadow:0 5px 15px rgba(0,0,0,0.08);
-    position: relative;
-    z-index: 5; /* WAJIB */
+    display:none;
 }
+
 .form-box input{
     width:100%;
     padding:8px;
@@ -65,7 +80,7 @@ body{
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 
 .item{display:flex;align-items:center;gap:8px;background:#f4f9ff;padding:8px 10px;border-radius:12px;}
-.icon{width:36px;height:36px;font-size:14px;background:linear-gradient(135deg,#2c6fb7,#4da3ff);border-radius:10px;display:flex;align-items:center;justify-content:center;color:white;}
+.icon{width:36px;height:36px;background:linear-gradient(135deg,#2c6fb7,#4da3ff);border-radius:10px;display:flex;align-items:center;justify-content:center;color:white;}
 .value{font-size:16px;font-weight:600;}
 
 .data-bg{width:40%;background:url('foto1.png') no-repeat right bottom;background-size:contain;opacity:0.9;}
@@ -107,8 +122,11 @@ button{
 
 <body>
 
+<!-- TOGGLE BUTTON -->
+<button class="toggle-btn" onclick="toggleForm()">📊 Input Data</button>
+
 <!-- FORM -->
-<div class="form-box">
+<div class="form-box" id="formBox">
 <b>Input Data</b>
 
 <input id="i_pendapatan" placeholder="Pendapatan Operasional">
@@ -213,6 +231,11 @@ d="M0,224L80,208C160,192,320,160,480,176C640,192,800,256,960,256C1120,256,1280,1
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <script>
+function toggleForm(){
+    let form = document.getElementById("formBox");
+    form.style.display = (form.style.display === "none") ? "block" : "none";
+}
+
 function formatAngka(x){
     return new Intl.NumberFormat('id-ID').format(x || 0);
 }
