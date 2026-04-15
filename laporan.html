@@ -224,12 +224,18 @@ body {
 }
 
 /* GAMBAR BAWAH */
+.ratio-bottom {
+    margin-top: 15px;
+    border-radius: 12px;
+    overflow: hidden; /* penting biar rapi */
+}
+
 .ratio-bottom img {
     width: 100%;
-    height: 120px;        /* tinggi dikurangi */
-    object-fit: contain;  /* biar tidak gepeng */
-    margin-top: 15px;
-    opacity: 0.85;
+    height: 120px;        /* tinggi tetap pendek */
+    object-fit: cover;    /* ini kunci biar full lebar */
+    display: block;
+    opacity: 0.9;
 }
 
 /* BUTTON */
