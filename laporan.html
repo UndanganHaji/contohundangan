@@ -18,35 +18,18 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to bottom, #cfe8ff, #ffffff);
     color: #1f3c5b;
+    background: linear-gradient(to bottom, #d9ecff, #ffffff);
 }
 
-/* BACKGROUND */
-.bg-wrapper {
+/* BACKGROUND GEDUNG */
+.bg-city {
     position: fixed;
-    inset: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0.15;
     z-index: 0;
-}
-
-.sky {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, #cfe8ff, #ffffff);
-}
-
-.mountain {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-
-.city {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    opacity: 0.7;
 }
 
 /* CONTAINER */
@@ -66,20 +49,24 @@ body {
 
 .header h1 {
     font-size: 34px;
+    font-weight: 600;
     color: #1f4f82;
 }
 
 .header h2 {
-    font-size: 22px;
+    font-size: 24px;
+    margin-top: 5px;
 }
 
 .badge {
-    margin-top: 15px;
     display: inline-block;
+    margin-top: 15px;
     background: linear-gradient(135deg, #2c6fb7, #4da3ff);
     color: white;
-    padding: 10px 25px;
+    padding: 10px 30px;
     border-radius: 30px;
+    font-weight: 500;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 /* SECTION */
@@ -90,66 +77,63 @@ body {
 .section-title {
     background: linear-gradient(135deg, #2c6fb7, #4da3ff);
     color: white;
-    padding: 10px 20px;
-    border-radius: 15px 15px 0 0;
+    padding: 12px 25px;
+    border-radius: 20px 20px 0 0;
     display: inline-block;
+    font-weight: 500;
 }
 
 /* CARD */
 .card {
-    background: white;
-    padding: 25px;
-    border-radius: 0 15px 15px 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    background: rgba(255,255,255,0.95);
+    padding: 20px;
+    border-radius: 0 20px 20px 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-/* DATA GRID */
+/* GRID DATA */
 .grid-2 {
     display: grid;
-    grid-template-columns: 60% 40%;
-    gap: 15px;
-}
-
-.data-list {
-    display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 15px;
 }
 
 .item {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     background: #f4f9ff;
     padding: 12px;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
+/* ICON */
 .icon {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     background: linear-gradient(135deg, #2c6fb7, #4da3ff);
-    border-radius: 10px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
+    font-size: 18px;
+}
+
+/* TEXT */
+.label {
+    font-size: 12px;
 }
 
 .value {
+    font-size: 18px;
     font-weight: 600;
 }
 
-/* GAMBAR DATA */
-.data-img img {
-    width: 100%;
-    opacity: 0.85;
-}
-
-/* RASIO GRID */
+/* RATIO */
 .grid-3 {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 15px;
 }
 
@@ -161,29 +145,21 @@ body {
 }
 
 .circle {
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     margin: auto;
-    background: #2c6fb7;
+    background: linear-gradient(135deg, #2c6fb7, #4da3ff);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
+    font-size: 20px;
     margin-bottom: 10px;
 }
 
-/* GAMBAR RASIO */
-.ratio-bottom img {
-    width: 100%;
-    margin-top: 20px;
-    border-radius: 10px;
-    opacity: 0.9;
-}
-
-/* BUTTON */
-button {
-    margin-top: 20px;
+.ratio .value {
+    font-size: 22px;
 }
 
 /* RESPONSIVE */
@@ -195,105 +171,364 @@ button {
         grid-template-columns: 1fr 1fr;
     }
 }
+
+
+/* BACKGROUND WRAPPER */
+.bg-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* LANGIT */
+.sky {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #cfe8ff, #ffffff);
+}
+
+/* GUNUNG */
+.mountain {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+}
+
+/* GEDUNG */
+.city {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 260px;
+    opacity: 0.8;
+}
+
+/* CONTENT DI ATAS */
+.container {
+    position: relative;
+    z-index: 2;
+}
+
+/* FIX LAYER CONTENT */
+.container {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* CARD DATA (FOTO 1) */
+.card-data {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-data::after {
+    content: "";
+    position: absolute;
+    right: 0px;
+    bottom: 0;
+    width: 500px;
+    height: 100%;
+    background: url('foto1.png') no-repeat right bottom;
+    background-size: contain;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+/* CARD RASIO (FOTO 2) */
+.card-ratio {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-ratio::after {
+    position: absolute;
+    right: 0px;
+    bottom: -20px;
+    width: 520px;
+    height: 100%;
+    background: url('foto2.png') no-repeat right bottom;
+    background-size: contain;
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+/* SUPAYA TEXT TETAP DI ATAS */
+.card * {
+    position: relative;
+    z-index: 2;
+}
+
+
+.card-data::after,
+.card-ratio::after {
+    filter: blur(0.3px);
+}
+
+.grid-2 {
+    width: 60%;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* jadi 4 kolom */
+    gap: 15px;
+}
+
+
+.card {
+    padding: 25px 20px;
+}
+    
+
+/* RATIO CARD STRUCTURE */
+.card-ratio {
+    padding: 20px;
+}
+
+/* ATAS (DATA) */
+.ratio-top {
+    margin-bottom: 20px;
+}
+
+/* BAWAH (GAMBAR) */
+.ratio-bottom {
+    width: 100%;
+    height: 180px;
+    background: url('foto2.png') no-repeat center bottom;
+    background-size: contain;
+    opacity: 0.9;
+}
+
+.ratio-bottom {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.ratio-bottom img {
+    width: 100%;
+    height: auto;
+    display: block;
+    opacity: 0.9;
+    border-radius: 12px;
+}
+
+.ratio-bottom img {
+    width: 100%;
+    opacity: 0.85;
+    mix-blend-mode: multiply;
+}
+
 </style>
 </head>
 
 <body>
 
+   
+<!-- BACKGROUND GEDUNG -->
 <div class="bg-wrapper">
+
+    <!-- LANGIT -->
     <div class="sky"></div>
 
+    <!-- GUNUNG -->
     <svg class="mountain" viewBox="0 0 1440 320">
         <path fill="#bcdcff" fill-opacity="0.6"
-        d="M0,224L80,208C160,192,320,160,480,176C640,192,800,256,960,256C1120,256,1280,192,1360,160L1440,128V320H0Z"></path>
+        d="M0,224L80,208C160,192,320,160,480,176C640,192,800,256,960,256C1120,256,1280,192,1360,160L1440,128V320H0Z">
+        </path>
     </svg>
 
+    <!-- GEDUNG -->
     <svg class="city" viewBox="0 0 1440 320">
         <rect x="100" y="120" width="80" height="200" fill="#9ec5e8"/>
         <rect x="220" y="100" width="100" height="220" fill="#7fb3e6"/>
         <rect x="360" y="140" width="90" height="180" fill="#9ec5e8"/>
         <rect x="500" y="90" width="110" height="230" fill="#7fb3e6"/>
+        <rect x="660" y="130" width="80" height="190" fill="#9ec5e8"/>
+        <rect x="780" y="80" width="120" height="240" fill="#7fb3e6"/>
+        <rect x="940" y="140" width="90" height="180" fill="#9ec5e8"/>
+        <rect x="1080" y="100" width="110" height="220" fill="#7fb3e6"/>
     </svg>
+
 </div>
+    
 
 <div class="container" id="capture">
 
-<div class="header">
-    <h1>Ikhtisar Utama Keuangan</h1>
-    <h2>Laporan Tahunan BPR Go Digital</h2>
-    <div class="badge">Tahun 2025</div>
+    <!-- HEADER -->
+    <div class="header">
+        <h1>Ikhtisar Utama Keuangan</h1>
+        <h2>Laporan Tahunan BPR Go Digital</h2>
+        <div class="badge">Tahun 2025</div>
+    </div>
+
+    <!-- DATA -->
+    <div class="section">
+        <div class="section-title">Ikhtisar Data Keuangan Penting</div>
+        <div class="card card-data">
+            <div class="grid-2">
+
+                <div class="item">
+                    <div class="icon"><i class="fas fa-coins"></i></div>
+                    <div>
+                        <div class="label">Pendapatan Operasional</div>
+                        <div class="value">84.656.240.801</div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="icon"><i class="fas fa-chart-line"></i></div>
+                    <div>
+                        <div class="label">Beban Operasional</div>
+                        <div class="value">60.320.989.108</div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="icon"><i class="fas fa-file-invoice"></i></div>
+                    <div>
+                        <div class="label">Beban Papat Operasional</div>
+                        <div class="value">60.320.989.108</div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="icon"><i class="fas fa-wallet"></i></div>
+                    <div>
+                        <div class="label">Beban Operasional Lain</div>
+                        <div class="value">751.454.000</div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="icon"><i class="fas fa-money-bill-wave"></i></div>
+                    <div>
+                        <div class="label">Pendapatan Non Operasional</div>
+                        <div class="value">750.000</div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="icon"><i class="fas fa-trophy"></i></div>
+                    <div>
+                        <div class="label">Laba Tahun Berjalan</div>
+                        <div class="value">21.264.204.303</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- RASIO -->
+    <div class="section">
+        <div class="section-title">Rasio Keuangan</div>
+        <div class="card card-ratio">
+
+    <!-- DATA ATAS -->
+    <div class="ratio-top">
+        <div class="grid-3">
+
+            <div class="ratio">
+                <div class="circle"><i class="fas fa-user-tie"></i></div>
+                <div>KPMM</div>
+                <div class="value">49,06</div>
+            </div>
+
+            <div class="ratio">
+                <div class="circle"><i class="fas fa-percent"></i></div>
+                <div>NPL Neto</div>
+                <div class="value">18,04</div>
+            </div>
+
+            <div class="ratio">
+                <div class="circle"><i class="fas fa-chart-bar"></i></div>
+                <div>NPL Gross</div>
+                <div class="value">19,08</div>
+            </div>
+
+            <div class="ratio">
+                <div class="circle"><i class="fas fa-chart-pie"></i></div>
+                <div>ROA</div>
+                <div class="value">2,09</div>
+            </div>
+
+            <div class="ratio">
+                <div class="circle"><i class="fas fa-balance-scale"></i></div>
+                <div>BOPO</div>
+                <div class="value">68,05</div>
+            </div>
+
+            <div class="ratio">
+                <div class="circle"><i class="fas fa-chart-area"></i></div>
+                <div>NIM</div>
+                <div class="value">7,07</div>
+            </div>
+
+            <div class="ratio">
+                <div class="circle"><i class="fas fa-exchange-alt"></i></div>
+                <div>LDR</div>
+                <div class="value">69,18</div>
+            </div>
+
+            <div class="ratio">
+                <div class="circle"><i class="fas fa-wallet"></i></div>
+                <div>Cash Ratio</div>
+                <div class="value">15,26</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- GAMBAR BAWAH -->
+   <div class="ratio-bottom">
+    <img src="foto2.png" alt="bg"></div>
+
 </div>
 
-<!-- DATA -->
-<div class="section">
-<div class="section-title">Ikhtisar Data Keuangan</div>
-<div class="card">
 
-<div class="grid-2">
-
-<div class="data-list">
-
-<div class="item"><div class="icon"><i class="fas fa-coins"></i></div><div><div>Pendapatan Operasional</div><div class="value">84.656.240.801</div></div></div>
-
-<div class="item"><div class="icon"><i class="fas fa-chart-line"></i></div><div><div>Beban Operasional</div><div class="value">60.320.989.108</div></div></div>
-
-<div class="item"><div class="icon"><i class="fas fa-wallet"></i></div><div><div>Beban Lain</div><div class="value">751.454.000</div></div></div>
-
-<div class="item"><div class="icon"><i class="fas fa-trophy"></i></div><div><div>Laba Tahun</div><div class="value">21.264.204.303</div></div></div>
-
+<div style="text-align:center; margin:20px;">
+    <button onclick="downloadPNG()" style="
+        padding:12px 25px;
+        border:none;
+        border-radius:30px;
+        background:linear-gradient(135deg,#2c6fb7,#4da3ff);
+        color:white;
+        font-weight:600;
+        cursor:pointer;
+        box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    ">
+        📸 Download PNG
+    </button>
 </div>
 
-<div class="data-img">
-<img src="foto1.png">
-</div>
 
-</div>
-</div>
-</div>
 
-<!-- RASIO -->
-<div class="section">
-<div class="section-title">Rasio Keuangan</div>
-<div class="card">
-
-<div class="grid-3">
-
-<div class="ratio"><div class="circle"><i class="fas fa-user"></i></div>KPMM<div class="value">49,06</div></div>
-<div class="ratio"><div class="circle"><i class="fas fa-percent"></i></div>NPL Neto<div class="value">18,04</div></div>
-<div class="ratio"><div class="circle"><i class="fas fa-chart-bar"></i></div>NPL Gross<div class="value">19,08</div></div>
-<div class="ratio"><div class="circle"><i class="fas fa-chart-pie"></i></div>ROA<div class="value">2,09</div></div>
-<div class="ratio"><div class="circle"><i class="fas fa-balance-scale"></i></div>BOPO<div class="value">68,05</div></div>
-<div class="ratio"><div class="circle"><i class="fas fa-chart-area"></i></div>NIM<div class="value">7,07</div></div>
-<div class="ratio"><div class="circle"><i class="fas fa-exchange-alt"></i></div>LDR<div class="value">69,18</div></div>
-<div class="ratio"><div class="circle"><i class="fas fa-wallet"></i></div>Cash Ratio<div class="value">15,26</div></div>
-
+    
 </div>
-
-<div class="ratio-bottom">
-<img src="foto2.png">
-</div>
-
-</div>
-</div>
-
-<div style="text-align:center;">
-<button onclick="downloadPNG()">📸 Download PNG</button>
-</div>
-
-</div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <script>
 function downloadPNG() {
-    html2canvas(document.getElementById("capture"), {scale:2}).then(canvas=>{
-        let link=document.createElement("a");
-        link.download="laporan.png";
-        link.href=canvas.toDataURL();
+    const element = document.getElementById("capture");
+
+    html2canvas(element, {
+        scale: 2, // kualitas HD
+        useCORS: true
+    }).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "laporan-keuangan.png";
+        link.href = canvas.toDataURL("image/png");
         link.click();
     });
 }
 </script>
+
+
+
 
 </body>
 </html>
