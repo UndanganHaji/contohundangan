@@ -186,18 +186,15 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, #cfe8ff 0%, #eaf4ff 50%, #ffffff 100%);
+    background: linear-gradient(to bottom, #cfe8ff, #ffffff);
 }
 
-/* PEGUNUNGAN */
+/* GUNUNG */
 .mountain {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 220px;
-    background: url('https://svgshare.com/i/13yA.svg') no-repeat center bottom;
-    background-size: cover;
-    opacity: 0.6;
+    height: 200px;
 }
 
 /* GEDUNG */
@@ -206,9 +203,13 @@ body {
     bottom: 0;
     width: 100%;
     height: 260px;
-    background: url('https://svgshare.com/i/13yB.svg') no-repeat center bottom;
-    background-size: cover;
-    opacity: 0.7;
+    opacity: 0.8;
+}
+
+/* CONTENT DI ATAS */
+.container {
+    position: relative;
+    z-index: 2;
 }
 
 /* FIX LAYER CONTENT */
@@ -232,9 +233,29 @@ body {
 
 <!-- BACKGROUND GEDUNG -->
 <div class="bg-wrapper">
+
+    <!-- LANGIT -->
     <div class="sky"></div>
-    <div class="mountain"></div>
-    <div class="city"></div>
+
+    <!-- GUNUNG -->
+    <svg class="mountain" viewBox="0 0 1440 320">
+        <path fill="#bcdcff" fill-opacity="0.6"
+        d="M0,224L80,208C160,192,320,160,480,176C640,192,800,256,960,256C1120,256,1280,192,1360,160L1440,128V320H0Z">
+        </path>
+    </svg>
+
+    <!-- GEDUNG -->
+    <svg class="city" viewBox="0 0 1440 320">
+        <rect x="100" y="120" width="80" height="200" fill="#9ec5e8"/>
+        <rect x="220" y="100" width="100" height="220" fill="#7fb3e6"/>
+        <rect x="360" y="140" width="90" height="180" fill="#9ec5e8"/>
+        <rect x="500" y="90" width="110" height="230" fill="#7fb3e6"/>
+        <rect x="660" y="130" width="80" height="190" fill="#9ec5e8"/>
+        <rect x="780" y="80" width="120" height="240" fill="#7fb3e6"/>
+        <rect x="940" y="140" width="90" height="180" fill="#9ec5e8"/>
+        <rect x="1080" y="100" width="110" height="220" fill="#7fb3e6"/>
+    </svg>
+
 </div>
     
 
