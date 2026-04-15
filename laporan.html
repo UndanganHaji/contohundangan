@@ -15,9 +15,10 @@
 body{
     font-family:'Poppins',sans-serif;
     background:linear-gradient(to bottom,#cfe8ff,#ffffff);
+    color:#1f3c5b;
 }
 
-/* MODAL */
+/* POPUP */
 .form-box{
     display:none;
     position:fixed;
@@ -44,33 +45,58 @@ body{
     position:fixed;
     inset:0;
     background:rgba(0,0,0,0.5);
+    z-index:998;
 }
 
-/* CONTENT */
+/* LAYOUT ASLI */
 .container{max-width:1000px;margin:auto;padding:20px;}
+.header{text-align:center;padding:40px 10px 20px;}
+.badge{background:#2c6fb7;color:white;padding:8px 20px;border-radius:20px;}
 
-.header{text-align:center;margin-top:30px;}
+.section{margin-top:25px;}
+.section-title{background:#2c6fb7;color:white;padding:10px;border-radius:10px 10px 0 0;}
+
+.card{background:white;padding:15px;border-radius:0 10px 10px 10px;}
+
+.card-data{display:flex;}
+.data-content{width:60%;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+
+.item{background:#f4f9ff;padding:8px;border-radius:10px;}
 .value{font-weight:bold;}
 
 .data-bg{
     width:40%;
     background:url('foto1.png') no-repeat right bottom;
     background-size:contain;
-    height:200px;
 }
 
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+/* RASIO */
 .grid-3{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.ratio{background:#f4f9ff;padding:10px;border-radius:10px;}
 
-.card{background:white;padding:15px;border-radius:10px;margin-top:20px;}
+.ratio-bottom img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    margin-top:10px;
+    border-radius:10px;
+}
 
 button{
     padding:10px 20px;
     border:none;
+    border-radius:20px;
     background:#2c6fb7;
     color:white;
-    border-radius:20px;
     cursor:pointer;
+}
+
+@media(max-width:768px){
+    .card-data{flex-direction:column;}
+    .data-content,.data-bg{width:100%;}
+    .data-bg{height:200px;}
+    .grid-3{grid-template-columns:1fr 1fr;}
 }
 </style>
 </head>
@@ -87,16 +113,15 @@ button{
 <div class="form-box">
 <button onclick="closeForm()">❌</button>
 
-<h3>Input Data</h3>
-
+<b>Input Data</b>
 <input id="i_pendapatan" placeholder="Pendapatan">
 <input id="i_beban" placeholder="Beban">
 <input id="i_beban_papat" placeholder="Beban Papat">
 <input id="i_beban_lain" placeholder="Beban Lain">
-<input id="i_pendapatan_lain" placeholder="Pendapatan Lain">
+<input id="i_pendapatan_lain" placeholder="Pendapatan Non Ops">
 <input id="i_laba" placeholder="Laba">
 
-<h3>Rasio</h3>
+<b>Rasio (%)</b>
 <input id="i_kpmm" placeholder="KPMM">
 <input id="i_nplnet" placeholder="NPL Neto">
 <input id="i_nplgross" placeholder="NPL Gross">
@@ -109,65 +134,81 @@ button{
 <button onclick="updateData()">Update</button>
 </div>
 
-<!-- DISPLAY -->
 <div class="container">
 
 <div class="header">
-<h1>Laporan Keuangan</h1>
+<h1>Ikhtisar Utama Keuangan</h1>
+<h2>Laporan Tahunan</h2>
+<div class="badge">2025</div>
 </div>
 
-<div class="card">
+<!-- DATA -->
+<div class="section">
+<div class="section-title">Data Keuangan</div>
+
+<div class="card card-data">
+<div class="data-content">
 <div class="grid-2">
-<div>Pendapatan: <span id="v_pendapatan">0</span></div>
-<div>Beban: <span id="v_beban">0</span></div>
-<div>Beban Papat: <span id="v_beban_papat">0</span></div>
-<div>Beban Lain: <span id="v_beban_lain">0</span></div>
-<div>Pendapatan Lain: <span id="v_pendapatan_lain">0</span></div>
-<div>Laba: <span id="v_laba">0</span></div>
+
+<div class="item">Pendapatan <div class="value" id="v_pendapatan">0</div></div>
+<div class="item">Beban <div class="value" id="v_beban">0</div></div>
+<div class="item">Beban Papat <div class="value" id="v_beban_papat">0</div></div>
+<div class="item">Beban Lain <div class="value" id="v_beban_lain">0</div></div>
+<div class="item">Pendapatan Non Ops <div class="value" id="v_pendapatan_lain">0</div></div>
+<div class="item">Laba <div class="value" id="v_laba">0</div></div>
+
+</div>
 </div>
 
 <div class="data-bg"></div>
+
 </div>
+</div>
+
+<!-- RASIO -->
+<div class="section">
+<div class="section-title">Rasio Keuangan</div>
 
 <div class="card">
+
 <div class="grid-3">
-<div>KPMM <span id="r_kpmm">0%</span></div>
-<div>NPL Neto <span id="r_nplnet">0%</span></div>
-<div>NPL Gross <span id="r_nplgross">0%</span></div>
-<div>ROA <span id="r_roa">0%</span></div>
-<div>BOPO <span id="r_bopo">0%</span></div>
-<div>NIM <span id="r_nim">0%</span></div>
-<div>LDR <span id="r_ldr">0%</span></div>
-<div>Cash <span id="r_cash">0%</span></div>
+
+<div class="ratio">KPMM <span id="r_kpmm">0%</span></div>
+<div class="ratio">NPL Neto <span id="r_nplnet">0%</span></div>
+<div class="ratio">NPL Gross <span id="r_nplgross">0%</span></div>
+<div class="ratio">ROA <span id="r_roa">0%</span></div>
+<div class="ratio">BOPO <span id="r_bopo">0%</span></div>
+<div class="ratio">NIM <span id="r_nim">0%</span></div>
+<div class="ratio">LDR <span id="r_ldr">0%</span></div>
+<div class="ratio">Cash <span id="r_cash">0%</span></div>
+
 </div>
 
-<img src="foto2.png" style="width:100%;margin-top:10px;border-radius:10px;">
+<div class="ratio-bottom">
+<img src="foto2.png">
+</div>
+
+</div>
 </div>
 
 </div>
 
 <script>
-
-/* FORMAT DISPLAY */
 function formatAngka(x){
-    return new Intl.NumberFormat('id-ID').format(x || 0);
+    return new Intl.NumberFormat('id-ID').format(x||0);
 }
-
-/* FORMAT INPUT */
-function formatInput(input){
-    let value = input.value.replace(/\D/g,"");
-    input.value = new Intl.NumberFormat('id-ID').format(value);
-}
-
-/* AMBIL ANGKA */
 function clean(x){
     return x.replace(/\./g,"");
 }
+function formatInput(el){
+    let v = el.value.replace(/\D/g,"");
+    el.value = new Intl.NumberFormat('id-ID').format(v);
+}
 
 /* AUTO FORMAT + SAVE */
-document.querySelectorAll(".form-box input").forEach(el=>{
-    el.addEventListener("input",function(){
-        formatInput(this);
+document.querySelectorAll(".form-box input").forEach(i=>{
+    i.addEventListener("input",()=>{
+        formatInput(i);
         saveData();
     });
 });
@@ -181,14 +222,14 @@ function updateData(){
     v_pendapatan_lain.innerText = formatAngka(clean(i_pendapatan_lain.value));
     v_laba.innerText = formatAngka(clean(i_laba.value));
 
-    r_kpmm.innerText = i_kpmm.value + "%";
-    r_nplnet.innerText = i_nplnet.value + "%";
-    r_nplgross.innerText = i_nplgross.value + "%";
-    r_roa.innerText = i_roa.value + "%";
-    r_bopo.innerText = i_bopo.value + "%";
-    r_nim.innerText = i_nim.value + "%";
-    r_ldr.innerText = i_ldr.value + "%";
-    r_cash.innerText = i_cash.value + "%";
+    r_kpmm.innerText = i_kpmm.value+"%";
+    r_nplnet.innerText = i_nplnet.value+"%";
+    r_nplgross.innerText = i_nplgross.value+"%";
+    r_roa.innerText = i_roa.value+"%";
+    r_bopo.innerText = i_bopo.value+"%";
+    r_nim.innerText = i_nim.value+"%";
+    r_ldr.innerText = i_ldr.value+"%";
+    r_cash.innerText = i_cash.value+"%";
 
     saveData();
     closeForm();
@@ -196,20 +237,20 @@ function updateData(){
 
 /* SAVE */
 function saveData(){
-    let data = {};
-    document.querySelectorAll(".form-box input").forEach(el=>{
-        data[el.id] = el.value;
+    let data={};
+    document.querySelectorAll(".form-box input").forEach(i=>{
+        data[i.id]=i.value;
     });
-    localStorage.setItem("laporan", JSON.stringify(data));
+    localStorage.setItem("laporan",JSON.stringify(data));
 }
 
 /* LOAD */
 function loadData(){
-    let data = JSON.parse(localStorage.getItem("laporan"));
+    let data=JSON.parse(localStorage.getItem("laporan"));
     if(!data) return;
 
-    document.querySelectorAll(".form-box input").forEach(el=>{
-        el.value = data[el.id] || "";
+    document.querySelectorAll(".form-box input").forEach(i=>{
+        i.value=data[i.id]||"";
     });
 
     updateData();
@@ -225,9 +266,7 @@ function closeForm(){
     overlay.style.display="none";
 }
 
-/* INIT */
-window.onload = loadData;
-
+window.onload=loadData;
 </script>
 
 </body>
