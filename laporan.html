@@ -10,270 +10,23 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(to bottom,#cfe8ff,#ffffff);
+    color:#1f3c5b;
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to bottom, #cfe8ff, #ffffff);
-    color: #1f3c5b;
-}
-
-/* BACKGROUND */
-.bg-wrapper {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-}
-
-.sky {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, #cfe8ff, #ffffff);
-}
-
-.mountain {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-
-.city {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    opacity: 0.7;
-}
-
-/* CONTAINER */
-.container {
-    position: relative;
-    z-index: 2;
-    max-width: 1000px;
-    margin: auto;
-    padding: 20px;
-}
-
-/* HEADER */
-.header {
-    text-align: center;
-    padding: 40px 10px 20px;
-}
-
-.header h1 {
-    font-size: 34px;
-    color: #1f4f82;
-}
-
-.header h2 {
-    font-size: 22px;
-}
-
-.badge {
-    margin-top: 15px;
-    display: inline-block;
-    background: linear-gradient(135deg, #2c6fb7, #4da3ff);
-    color: white;
-    padding: 10px 25px;
-    border-radius: 30px;
-}
-
-/* SECTION */
-.section {
-    margin-top: 25px;
-}
-
-.section-title {
-    background: linear-gradient(135deg, #2c6fb7, #4da3ff);
-    color: white;
-    padding: 12px 25px;
-    border-radius: 20px 20px 0 0;
-    display: inline-block;
-}
-
-/* CARD */
-.card {
-    background: rgba(255,255,255,0.95);
-    padding: 18px;
-    border-radius: 0 20px 20px 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-}
-
-/* ===================== */
-/* CARD DATA (TIDAK DIUBAH) */
-/* ===================== */
-
-.card-data {
-    display: flex;
-    overflow: hidden;
-}
-
-.data-content {
-    width: 58%;
-}
-
-.grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-}
-
-.item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: #f4f9ff;
-    padding: 8px 10px;
-    border-radius: 12px;
-}
-
-.icon {
-    width: 36px;
-    height: 36px;
-    font-size: 14px;
-    background: linear-gradient(135deg, #2c6fb7, #4da3ff);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
-
-.label {
-    font-size: 11px;
-}
-    
-.value {
-    font-size: 16px;
-    font-weight: 600;
-}
-
-/* GAMBAR KANAN */
-.data-bg {
-    width: 40%;
-    background: url('foto1.png') no-repeat right bottom;
-    background-size: contain;
-    opacity: 0.9;
-}
-
-/* ===================== */
-/* RASIO */
-/* ===================== */
-
-/* RATIO STYLE BARU */
-.ratio {
-    background: #f4f9ff;
-    padding: 12px;
-    border-radius: 12px;
-}
-
-/* FLEX HORIZONTAL */
-.ratio-left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* ICON */
-.circle {
-    width: 40px;
-    height: 40px;
-    font-size: 14px;
-}
-
-/* TEXT */
-.ratio-text .label {
-    font-size: 12px;
-}
-
-.ratio-text .value {
-    font-size: 16px;
-    font-weight: 600;
-}
-
-
-    
-.grid-3 {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-}
-
-.ratio {
-    background: #f4f9ff;
-    text-align: center;
-    padding: 15px;
-    border-radius: 12px;
-}
-
-.circle {
-    width: 50px;
-    height: 50px;
-    margin: auto;
-    background: #2c6fb7;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    margin-bottom: 10px;
-}
-
-/* GAMBAR BAWAH */
-.ratio-bottom {
-    margin-top: 15px;
-    border-radius: 12px;
-    overflow: hidden; /* penting biar rapi */
-}
-
-.ratio-bottom img {
-    width: 100%;
-    height: 250px;        /* tinggi tetap pendek */
-    object-fit: cover;    /* ini kunci biar full lebar */
-    display: block;
-    opacity: 0.9;
-}
-
-/* BUTTON */
-button {
-    margin-top: 20px;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 30px;
-    background: linear-gradient(135deg,#2c6fb7,#4da3ff);
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-    .card-data {
-        flex-direction: column;
-    }
-    .data-content, .data-bg {
-        width: 100%;
-    }
-    .grid-3 {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-
-
+/* FORM */
 .form-box{
     background:white;
-    margin:20px auto;
     max-width:1000px;
+    margin:20px auto;
     padding:20px;
     border-radius:15px;
     box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
-
 .form-box input{
     width:100%;
     padding:8px;
@@ -281,66 +34,179 @@ button {
     border-radius:8px;
     border:1px solid #ddd;
 }
+.form-box button{
+    margin-top:10px;
+}
 
+/* BACKGROUND */
+.bg-wrapper{position:fixed;inset:0;z-index:0;}
+.sky{position:absolute;width:100%;height:100%;background:linear-gradient(to bottom,#cfe8ff,#ffffff);}
+.mountain{position:absolute;bottom:0;width:100%;}
+.city{position:absolute;bottom:0;width:100%;opacity:0.7;}
 
+/* CONTAINER */
+.container{position:relative;z-index:2;max-width:1000px;margin:auto;padding:20px;}
 
+/* HEADER */
+.header{text-align:center;padding:40px 10px 20px;}
+.header h1{font-size:34px;color:#1f4f82;}
+.header h2{font-size:22px;}
+.badge{
+    margin-top:15px;
+    display:inline-block;
+    background:linear-gradient(135deg,#2c6fb7,#4da3ff);
+    color:white;
+    padding:10px 25px;
+    border-radius:30px;
+}
 
+/* SECTION */
+.section{margin-top:25px;}
+.section-title{
+    background:linear-gradient(135deg,#2c6fb7,#4da3ff);
+    color:white;
+    padding:12px 25px;
+    border-radius:20px 20px 0 0;
+    display:inline-block;
+}
 
+/* CARD */
+.card{
+    background:rgba(255,255,255,0.95);
+    padding:18px;
+    border-radius:0 20px 20px 20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* CARD DATA */
+.card-data{display:flex;overflow:hidden;}
+.data-content{width:58%;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+
+.item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:#f4f9ff;
+    padding:8px 10px;
+    border-radius:12px;
+}
+
+.icon{
+    width:36px;height:36px;font-size:14px;
+    background:linear-gradient(135deg,#2c6fb7,#4da3ff);
+    border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    color:white;
+}
+
+.label{font-size:11px;}
+.value{font-size:16px;font-weight:600;}
+
+.data-bg{
+    width:40%;
+    background:url('foto1.png') no-repeat right bottom;
+    background-size:contain;
+}
+
+/* RASIO */
+.grid-3{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.ratio{
+    background:#f4f9ff;
+    padding:12px;
+    border-radius:12px;
+}
+
+.ratio-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.circle{
+    width:40px;height:40px;
+    background:#2c6fb7;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+}
+
+.ratio-bottom{
+    margin-top:15px;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+.ratio-bottom img{
+    width:100%;
+    height:120px;
+    object-fit:cover;
+    display:block;
+}
+
+/* BUTTON */
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:25px;
+    background:linear-gradient(135deg,#2c6fb7,#4da3ff);
+    color:white;
+    cursor:pointer;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .card-data{flex-direction:column;}
+    .data-content,.data-bg{width:100%;}
+    .grid-3{grid-template-columns:1fr 1fr;}
+}
 </style>
 </head>
 
 <body>
-<!-- TAMBAHKAN DI ATAS CONTAINER (setelah <body>) -->
 
+<!-- FORM -->
 <div class="form-box">
-    <h3>Input Data Keuangan</h3>
+<h3>Input Data Keuangan</h3>
 
-    <input id="i_pendapatan" placeholder="Pendapatan Operasional">
-    <input id="i_beban" placeholder="Beban Operasional">
-    <input id="i_beban_lain" placeholder="Beban Lain">
-    <input id="i_pendapatan_lain" placeholder="Pendapatan Non Operasional">
-    <input id="i_laba" placeholder="Laba Tahun Berjalan">
+<input id="i_pendapatan" placeholder="Pendapatan Operasional">
+<input id="i_beban" placeholder="Beban Operasional">
+<input id="i_beban_papat" placeholder="Beban Papat Operasional">
+<input id="i_beban_lain" placeholder="Beban Operasional Lain">
+<input id="i_pendapatan_lain" placeholder="Pendapatan Non Operasional">
+<input id="i_laba" placeholder="Laba Tahun Berjalan">
 
-    <h4>Rasio (%)</h4>
-    <input id="i_kpmm" placeholder="KPMM">
-    <input id="i_nplnet" placeholder="NPL Neto">
-    <input id="i_nplgross" placeholder="NPL Gross">
-    <input id="i_roa" placeholder="ROA">
-    <input id="i_bopo" placeholder="BOPO">
-    <input id="i_nim" placeholder="NIM">
-    <input id="i_ldr" placeholder="LDR">
-    <input id="i_cash" placeholder="Cash Ratio">
+<h4>Rasio (%)</h4>
+<input id="i_kpmm" placeholder="KPMM">
+<input id="i_nplnet" placeholder="NPL Neto">
+<input id="i_nplgross" placeholder="NPL Gross">
+<input id="i_roa" placeholder="ROA">
+<input id="i_bopo" placeholder="BOPO">
+<input id="i_nim" placeholder="NIM">
+<input id="i_ldr" placeholder="LDR">
+<input id="i_cash" placeholder="Cash Ratio">
 
-    <button onclick="updateData()">Update Data</button>
+<button onclick="updateData()">Update Data</button>
 </div>
-    
 
-
-    
 <!-- BACKGROUND -->
 <div class="bg-wrapper">
-    <div class="sky"></div>
-
-    <svg class="mountain" viewBox="0 0 1440 320">
-        <path fill="#bcdcff" fill-opacity="0.6"
-        d="M0,224L80,208C160,192,320,160,480,176C640,192,800,256,960,256C1120,256,1280,192,1360,160L1440,128V320H0Z"></path>
-    </svg>
-
-    <svg class="city" viewBox="0 0 1440 320">
-        <rect x="100" y="120" width="80" height="200" fill="#9ec5e8"/>
-        <rect x="220" y="100" width="100" height="220" fill="#7fb3e6"/>
-        <rect x="360" y="140" width="90" height="180" fill="#9ec5e8"/>
-        <rect x="500" y="90" width="110" height="230" fill="#7fb3e6"/>
-    </svg>
+<div class="sky"></div>
 </div>
 
 <div class="container" id="capture">
 
-<!-- HEADER -->
 <div class="header">
-    <h1>Ikhtisar Utama Keuangan</h1>
-    <h2>Laporan Tahunan PT. BPR PRIMA NADI</h2>
-    <div class="badge">Tahun 2025</div>
+<h1>Ikhtisar Utama Keuangan</h1>
+<h2>PT. BPR PRIMA NADI</h2>
+<div class="badge">Tahun 2025</div>
 </div>
 
 <!-- DATA -->
@@ -356,7 +222,7 @@ button {
 
 <div class="item"><div class="icon"><i class="fas fa-chart-line"></i></div><div><div>Beban Operasional</div><div class="value" id="v_beban">60.320.989.108</div></div></div>
 
-<div class="item"><div class="icon"><i class="fas fa-file-invoice"></i></div><div><div>Beban Non Operasional</div><div class="value">60.320.989.108</div></div></div>
+<div class="item"><div class="icon"><i class="fas fa-file-invoice"></i></div><div><div>Beban Papat Operasional</div><div class="value" id="v_beban_papat">60.320.989.108</div></div></div>
 
 <div class="item"><div class="icon"><i class="fas fa-wallet"></i></div><div><div>Beban Operasional Lain</div><div class="value" id="v_beban_lain">751.454.000</div></div></div>
 
@@ -380,14 +246,14 @@ button {
 
 <div class="grid-3">
 
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-user"></i></div>KPMM<div class="value" id="r_kpmm">49,06%</div></div></div>
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-percent"></i></div>NPL Neto<div class="value" id="r_nplnet">18,04%</div></div></div>
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-chart-bar"></i></div>NPL Gross<div class="value" id="r_nplgross">19,08%</div></div></div>
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-chart-pie"></i></div>ROA<div class="value" id="r_roa">2,09%</div></div></div>
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-balance-scale"></i></div>BOPO<div class="value" id="r_bopo">68,05%</div></div></div>
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-chart-area"></i></div>NIM<div class="value" id="r_nim">7,07%</div></div></div>
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-exchange-alt"></i></div>LDR<div class="value" id="r_ldr">69,18%</div></div></div>
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-wallet"></i></div>Cash Ratio<div class="value" id="r_cash">15,26%</div></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-user"></i></div>KPMM <span class="value" id="r_kpmm">49,06%</span></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-percent"></i></div>NPL Neto <span class="value" id="r_nplnet">18,04%</span></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-chart-bar"></i></div>NPL Gross <span class="value" id="r_nplgross">19,08%</span></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-chart-pie"></i></div>ROA <span class="value" id="r_roa">2,09%</span></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-balance-scale"></i></div>BOPO <span class="value" id="r_bopo">68,05%</span></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-chart-area"></i></div>NIM <span class="value" id="r_nim">7,07%</span></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-exchange-alt"></i></div>LDR <span class="value" id="r_ldr">69,18%</span></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-wallet"></i></div>Cash Ratio <span class="value" id="r_cash">15,26%</span></div></div>
 
 </div>
 
@@ -407,8 +273,31 @@ button {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <script>
-function downloadPNG() {
-    html2canvas(document.getElementById("capture"), {scale:2}).then(canvas=>{
+function formatAngka(x){
+    return new Intl.NumberFormat('id-ID').format(x || 0);
+}
+
+function updateData(){
+    v_pendapatan.innerText = formatAngka(i_pendapatan.value);
+    v_beban.innerText = formatAngka(i_beban.value);
+    v_beban_papat.innerText = formatAngka(i_beban_papat.value);
+    v_beban_lain.innerText = formatAngka(i_beban_lain.value);
+    v_pendapatan_lain.innerText = formatAngka(i_pendapatan_lain.value);
+    v_laba.innerText = formatAngka(i_laba.value);
+
+    r_kpmm.innerText = i_kpmm.value + "%";
+    r_nplnet.innerText = i_nplnet.value + "%";
+    r_nplgross.innerText = i_nplgross.value + "%";
+    r_roa.innerText = i_roa.value + "%";
+    r_bopo.innerText = i_bopo.value + "%";
+    r_nim.innerText = i_nim.value + "%";
+    r_ldr.innerText = i_ldr.value + "%";
+    r_cash.innerText = i_cash.value + "%";
+}
+
+function downloadPNG(){
+    html2canvas(document.getElementById("capture"),{scale:2})
+    .then(canvas=>{
         let link=document.createElement("a");
         link.download="laporan-keuangan.png";
         link.href=canvas.toDataURL();
@@ -417,39 +306,5 @@ function downloadPNG() {
 }
 </script>
 
-<script>
-function formatAngka(x){
-    return new Intl.NumberFormat('id-ID').format(x);
-}
-
-function updateData(){
-
-    document.getElementById('v_pendapatan').innerText =
-        formatAngka(i_pendapatan.value);
-
-    document.getElementById('v_beban').innerText =
-        formatAngka(i_beban.value);
-
-    document.getElementById('v_beban_lain').innerText =
-        formatAngka(i_beban_lain.value);
-
-    document.getElementById('v_pendapatan_lain').innerText =
-        formatAngka(i_pendapatan_lain.value);
-
-    document.getElementById('v_laba').innerText =
-        formatAngka(i_laba.value);
-
-    // RASIO
-    document.getElementById('r_kpmm').innerText = i_kpmm.value + "%";
-    document.getElementById('r_nplnet').innerText = i_nplnet.value + "%";
-    document.getElementById('r_nplgross').innerText = i_nplgross.value + "%";
-    document.getElementById('r_roa').innerText = i_roa.value + "%";
-    document.getElementById('r_bopo').innerText = i_bopo.value + "%";
-    document.getElementById('r_nim').innerText = i_nim.value + "%";
-    document.getElementById('r_ldr').innerText = i_ldr.value + "%";
-    document.getElementById('r_cash').innerText = i_cash.value + "%";
-}
-</script>
-    
 </body>
 </html>
