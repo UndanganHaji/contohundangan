@@ -53,7 +53,6 @@ body{
     position:fixed;
     inset:0;
     background:rgba(0,0,0,0.5);
-    z-index:998;
 }
 
 /* LAYOUT */
@@ -173,6 +172,7 @@ button{
 
 <div style="text-align:center;margin-top:20px;">
 <button onclick="openForm()">➕ Input Data</button>
+<button onclick="exportPDF()">📄 Export PDF</button>
 </div>
 
 <!-- FORM -->
@@ -235,36 +235,31 @@ button{
 <div class="badge">2025</div>
 </div>
 
-<!-- DATA -->
 <div class="section">
 <div class="section-title">Data Keuangan</div>
 
 <div class="card card-data">
-
 <div class="data-content">
 <div class="grid-2">
 
-<div class="item"><div class="icon"><i class="fas fa-coins"></i></div><div>Pendapatan<div class="value" id="v_pendapatan">0</div></div></div>
-<div class="item"><div class="icon"><i class="fas fa-chart-line"></i></div><div>Beban<div class="value" id="v_beban">0</div></div></div>
-<div class="item"><div class="icon"><i class="fas fa-file-invoice"></i></div><div>Beban Papat<div class="value" id="v_beban_papat">0</div></div></div>
-<div class="item"><div class="icon"><i class="fas fa-wallet"></i></div><div>Beban Lain<div class="value" id="v_beban_lain">0</div></div></div>
-<div class="item"><div class="icon"><i class="fas fa-money-bill-wave"></i></div><div>Pendapatan Non Ops<div class="value" id="v_pendapatan_lain">0</div></div></div>
-<div class="item"><div class="icon"><i class="fas fa-trophy"></i></div><div>Laba<div class="value" id="v_laba">0</div></div></div>
+<div class="item"><div class="icon"><i class="fas fa-coins"></i></div>Pendapatan <span id="v_pendapatan">0</span></div>
+<div class="item"><div class="icon"><i class="fas fa-chart-line"></i></div>Beban <span id="v_beban">0</span></div>
+<div class="item"><div class="icon"><i class="fas fa-file-invoice"></i></div>Beban Papat <span id="v_beban_papat">0</span></div>
+<div class="item"><div class="icon"><i class="fas fa-wallet"></i></div>Beban Lain <span id="v_beban_lain">0</span></div>
+<div class="item"><div class="icon"><i class="fas fa-money-bill-wave"></i></div>Pendapatan Non Ops <span id="v_pendapatan_lain">0</span></div>
+<div class="item"><div class="icon"><i class="fas fa-trophy"></i></div>Laba <span id="v_laba">0</span></div>
 
 </div>
 </div>
 
 <div class="data-bg"></div>
-
 </div>
 </div>
 
-<!-- RASIO -->
 <div class="section">
 <div class="section-title">Rasio Keuangan</div>
 
 <div class="card">
-
 <div class="grid-3">
 
 <div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-percentage"></i></div>KPMM <span id="r_kpmm">0%</span></div></div>
@@ -286,6 +281,10 @@ button{
 </div>
 
 </div>
+
+<!-- LIBRARY PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
 function formatAngka(x){return new Intl.NumberFormat('id-ID').format(x||0);}
@@ -340,6 +339,34 @@ function loadData(){
     });
 
     updateData();
+}
+
+/* EXPORT PDF (TAMBAHAN SAJA) */
+async function exportPDF(){
+    const { jsPDF } = window.jspdf;
+    const element = document.querySelector(".container");
+
+    const canvas = await html2canvas(element,{scale:2});
+    const imgData = canvas.toDataURL("image/png");
+
+    const pdf = new jsPDF('p','mm','a4');
+    const width = 210;
+    const height = canvas.height * width / canvas.width;
+
+    let position = 0;
+    let heightLeft = height;
+
+    pdf.addImage(imgData,'PNG',0,position,width,height);
+    heightLeft -= 297;
+
+    while(heightLeft > 0){
+        position = heightLeft - height;
+        pdf.addPage();
+        pdf.addImage(imgData,'PNG',0,position,width,height);
+        heightLeft -= 297;
+    }
+
+    pdf.save("Laporan_Keuangan.pdf");
 }
 
 function openForm(){
