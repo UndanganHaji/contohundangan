@@ -50,8 +50,10 @@ body{
     z-index:998;
 }
 
-/* LAYOUT */
-.container{max-width:1000px;margin:auto;padding:20px;}
+/* CONTAINER */
+.container{position:relative;z-index:2;max-width:1000px;margin:auto;padding:20px;}
+
+/* HEADER */
 .header{text-align:center;padding:40px 10px 20px;}
 .header h1{font-size:34px;color:#1f4f82;}
 .header h2{font-size:22px;}
@@ -125,6 +127,23 @@ body{
     border-radius:12px;
 }
 
+.ratio-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.circle{
+    width:40px;
+    height:40px;
+    background:linear-gradient(135deg,#2c6fb7,#4da3ff);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+}
+
 .ratio-bottom img{
     width:100%;
     height:180px;
@@ -174,14 +193,14 @@ button{
 <input id="i_laba" placeholder="Laba">
 
 <b>Rasio (%)</b>
-<input id="i_kpmm" placeholder="KPMM">
-<input id="i_nplnet" placeholder="NPL Neto">
-<input id="i_nplgross" placeholder="NPL Gross">
-<input id="i_roa" placeholder="ROA">
-<input id="i_bopo" placeholder="BOPO">
-<input id="i_nim" placeholder="NIM">
-<input id="i_ldr" placeholder="LDR">
-<input id="i_cash" placeholder="Cash Ratio">
+<input id="i_kpmm">
+<input id="i_nplnet">
+<input id="i_nplgross">
+<input id="i_roa">
+<input id="i_bopo">
+<input id="i_nim">
+<input id="i_ldr">
+<input id="i_cash">
 
 <button onclick="updateData()">Update</button>
 </div>
@@ -225,14 +244,23 @@ button{
 <div class="card">
 
 <div class="grid-3">
-<div class="ratio">KPMM <span id="r_kpmm">0%</span></div>
-<div class="ratio">NPL Neto <span id="r_nplnet">0%</span></div>
-<div class="ratio">NPL Gross <span id="r_nplgross">0%</span></div>
-<div class="ratio">ROA <span id="r_roa">0%</span></div>
-<div class="ratio">BOPO <span id="r_bopo">0%</span></div>
-<div class="ratio">NIM <span id="r_nim">0%</span></div>
-<div class="ratio">LDR <span id="r_ldr">0%</span></div>
-<div class="ratio">Cash <span id="r_cash">0%</span></div>
+
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-percentage"></i></div>KPMM <span id="r_kpmm">0%</span></div></div>
+
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-chart-pie"></i></div>NPL Neto <span id="r_nplnet">0%</span></div></div>
+
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-chart-bar"></i></div>NPL Gross <span id="r_nplgross">0%</span></div></div>
+
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-chart-line"></i></div>ROA <span id="r_roa">0%</span></div></div>
+
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-balance-scale"></i></div>BOPO <span id="r_bopo">0%</span></div></div>
+
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-coins"></i></div>NIM <span id="r_nim">0%</span></div></div>
+
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-exchange-alt"></i></div>LDR <span id="r_ldr">0%</span></div></div>
+
+<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-wallet"></i></div>Cash <span id="r_cash">0%</span></div></div>
+
 </div>
 
 <div class="ratio-bottom">
@@ -256,7 +284,6 @@ function formatInput(el){
     el.value = new Intl.NumberFormat('id-ID').format(v);
 }
 
-/* AUTO FORMAT */
 document.querySelectorAll(".form-box input").forEach(i=>{
     i.addEventListener("input",()=>{
         formatInput(i);
@@ -264,7 +291,6 @@ document.querySelectorAll(".form-box input").forEach(i=>{
     });
 });
 
-/* UPDATE */
 function updateData(){
     v_pendapatan.innerText = formatAngka(clean(i_pendapatan.value));
     v_beban.innerText = formatAngka(clean(i_beban.value));
@@ -286,7 +312,6 @@ function updateData(){
     closeForm();
 }
 
-/* SAVE */
 function saveData(){
     let data={};
     document.querySelectorAll(".form-box input").forEach(i=>{
@@ -295,7 +320,6 @@ function saveData(){
     localStorage.setItem("laporan",JSON.stringify(data));
 }
 
-/* LOAD */
 function loadData(){
     let data=JSON.parse(localStorage.getItem("laporan"));
     if(!data) return;
@@ -307,7 +331,6 @@ function loadData(){
     updateData();
 }
 
-/* MODAL */
 function openForm(){
     document.querySelector(".form-box").style.display="block";
     overlay.style.display="block";
