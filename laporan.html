@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ikhtisar Keuangan</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom, #eaf4ff, #ffffff);
+    color: #1e3a5f;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* HEADER */
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    margin: 5px 0;
+    font-size: 28px;
+}
+
+.header .year {
+    background: #2c6fb7;
+    color: white;
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.card h3 {
+    margin-bottom: 15px;
+    color: #2c6fb7;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.item {
+    background: #f4f8ff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.label {
+    font-size: 12px;
+}
+
+.value {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* RATIO GRID */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.ratio {
+    text-align: center;
+    background: #f4f8ff;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.ratio .value {
+    font-size: 22px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>Ikhtisar Utama Keuangan</h1>
+        <h2>Laporan Tahunan BPR Go Digital</h2>
+        <div class="year">Tahun 2025</div>
+    </div>
+
+    <!-- DATA KEUANGAN -->
+    <div class="card">
+        <h3>Ikhtisar Data Keuangan Penting</h3>
+        <div class="grid">
+
+            <div class="item">
+                <div class="label">Pendapatan Operasional</div>
+                <div class="value">84.656.240.801</div>
+            </div>
+
+            <div class="item">
+                <div class="label">Beban Operasional</div>
+                <div class="value">60.320.989.108</div>
+            </div>
+
+            <div class="item">
+                <div class="label">Beban Papat Operasional</div>
+                <div class="value">60.320.989.108</div>
+            </div>
+
+            <div class="item">
+                <div class="label">Beban Operasional Lain</div>
+                <div class="value">751.454.000</div>
+            </div>
+
+            <div class="item">
+                <div class="label">Pendapatan Non Operasional</div>
+                <div class="value">750.000</div>
+            </div>
+
+            <div class="item">
+                <div class="label">Laba Tahun Berjalan</div>
+                <div class="value">21.264.204.303</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- RASIO -->
+    <div class="card">
+        <h3>Rasio Keuangan</h3>
+
+        <div class="grid-3">
+            <div class="ratio">
+                <div>KPMM</div>
+                <div class="value">49,06</div>
+            </div>
+
+            <div class="ratio">
+                <div>NPL Neto</div>
+                <div class="value">18,04</div>
+            </div>
+
+            <div class="ratio">
+                <div>NPL Gross</div>
+                <div class="value">19,08</div>
+            </div>
+
+            <div class="ratio">
+                <div>ROA</div>
+                <div class="value">2,09</div>
+            </div>
+
+            <div class="ratio">
+                <div>BOPO</div>
+                <div class="value">68,05</div>
+            </div>
+
+            <div class="ratio">
+                <div>NIM</div>
+                <div class="value">7,07</div>
+            </div>
+
+            <div class="ratio">
+                <div>LDR</div>
+                <div class="value">69,18</div>
+            </div>
+
+            <div class="ratio">
+                <div>Cash Ratio</div>
+                <div class="value">15,26</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
