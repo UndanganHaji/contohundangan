@@ -18,18 +18,25 @@ body{
     color:#1f3c5b;
 }
 
-/* ===================== */
-/* FIX Z-INDEX UTAMA */
-/* ===================== */
+/* ================= BACKGROUND ================= */
 .bg-wrapper{position:fixed;inset:0;z-index:0;}
-.container{position:relative;z-index:2;}
-.toggle-btn{position:relative;z-index:10;}
-.form-box{position:relative;z-index:9;}
+.sky{position:absolute;width:100%;height:100%;background:linear-gradient(to bottom,#cfe8ff,#ffffff);}
+.mountain{position:absolute;bottom:0;width:100%;}
+.city{position:absolute;bottom:0;width:100%;opacity:0.7;}
 
-/* ===================== */
-/* TOMBOL */
-/* ===================== */
+/* ================= CONTAINER ================= */
+.container{position:relative;z-index:2;max-width:1000px;margin:auto;padding:20px;}
+
+/* ================= HEADER ================= */
+.header{text-align:center;padding:40px 10px 20px;}
+.header h1{font-size:34px;color:#1f4f82;}
+.header h2{font-size:22px;}
+.badge{margin-top:15px;display:inline-block;background:linear-gradient(135deg,#2c6fb7,#4da3ff);color:white;padding:10px 25px;border-radius:30px;}
+
+/* ================= BUTTON ================= */
 .toggle-btn{
+    position:relative;
+    z-index:5;
     display:block;
     margin:15px auto;
     padding:10px 25px;
@@ -42,49 +49,14 @@ body{
     box-shadow:0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* ===================== */
-/* FORM */
-/* ===================== */
-.form-box{
-    max-width:1000px;
-    margin:10px auto;
-    background:white;
-    padding:15px;
-    border-radius:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.08);
-    display:none;
-}
-
-.form-box input{
-    width:100%;
-    padding:8px;
-    margin:5px 0;
-    border-radius:8px;
-    border:1px solid #ddd;
-}
-
-/* BACKGROUND */
-.sky{position:absolute;width:100%;height:100%;background:linear-gradient(to bottom,#cfe8ff,#ffffff);}
-.mountain{position:absolute;bottom:0;width:100%;}
-.city{position:absolute;bottom:0;width:100%;opacity:0.7;}
-
-/* CONTAINER */
-.container{max-width:1000px;margin:auto;padding:20px;}
-
-/* HEADER */
-.header{text-align:center;padding:40px 10px 20px;}
-.header h1{font-size:34px;color:#1f4f82;}
-.header h2{font-size:22px;}
-.badge{margin-top:15px;display:inline-block;background:linear-gradient(135deg,#2c6fb7,#4da3ff);color:white;padding:10px 25px;border-radius:30px;}
-
-/* SECTION */
+/* ================= SECTION ================= */
 .section{margin-top:25px;}
 .section-title{background:linear-gradient(135deg,#2c6fb7,#4da3ff);color:white;padding:12px 25px;border-radius:20px 20px 0 0;display:inline-block;}
 
-/* CARD */
+/* ================= CARD ================= */
 .card{background:rgba(255,255,255,0.95);padding:18px;border-radius:0 20px 20px 20px;box-shadow:0 10px 30px rgba(0,0,0,0.08);}
 
-/* DATA */
+/* ================= DATA ================= */
 .card-data{display:flex;}
 .data-content{width:58%;}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
@@ -95,7 +67,7 @@ body{
 
 .data-bg{width:40%;background:url('foto1.png') no-repeat right bottom;background-size:contain;opacity:0.9;}
 
-/* RASIO */
+/* ================= RASIO ================= */
 .grid-3{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;}
 .ratio{background:#f4f9ff;padding:15px;border-radius:12px;}
 .ratio-left{display:flex;align-items:center;gap:10px;}
@@ -109,7 +81,46 @@ body{
     border-radius:12px;
 }
 
-/* BUTTON */
+/* ================= MODAL ================= */
+.modal{
+    display:none;
+    position:fixed;
+    z-index:999;
+    left:0;top:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.5);
+}
+
+.modal-content{
+    background:white;
+    margin:5% auto;
+    padding:20px;
+    width:90%;
+    max-width:500px;
+    border-radius:15px;
+    animation:fadeIn 0.3s ease;
+}
+
+.modal-content input{
+    width:100%;
+    padding:8px;
+    margin:6px 0;
+    border-radius:8px;
+    border:1px solid #ddd;
+}
+
+.close{
+    float:right;
+    font-size:22px;
+    cursor:pointer;
+}
+
+@keyframes fadeIn{
+    from{transform:translateY(-20px);opacity:0;}
+    to{transform:translateY(0);opacity:1;}
+}
+
+/* ================= BUTTON ================= */
 button{
     margin-top:20px;
     padding:12px 25px;
@@ -121,7 +132,7 @@ button{
     cursor:pointer;
 }
 
-/* RESPONSIVE */
+/* ================= RESPONSIVE ================= */
 @media(max-width:768px){
     .card-data{flex-direction:column;}
     .data-content,.data-bg{width:100%;}
@@ -132,12 +143,16 @@ button{
 
 <body>
 
-<!-- TOMBOL -->
-<button class="toggle-btn" onclick="toggleForm()">📊 Input Data</button>
+<!-- BUTTON -->
+<button class="toggle-btn" onclick="openModal()">📊 Input Data</button>
 
-<!-- FORM -->
-<div class="form-box" id="formBox">
-<b>Input Data</b>
+<!-- MODAL -->
+<div class="modal" id="modalForm">
+<div class="modal-content">
+
+<span class="close" onclick="closeModal()">&times;</span>
+
+<h3>Input Data Keuangan</h3>
 
 <input id="i_pendapatan" placeholder="Pendapatan Operasional">
 <input id="i_beban" placeholder="Beban Operasional">
@@ -146,7 +161,8 @@ button{
 <input id="i_pendapatan_lain" placeholder="Pendapatan Non Operasional">
 <input id="i_laba" placeholder="Laba">
 
-<b>Rasio (%)</b>
+<h4>Rasio (%)</h4>
+
 <input id="i_kpmm" placeholder="KPMM">
 <input id="i_nplnet" placeholder="NPL Neto">
 <input id="i_nplgross" placeholder="NPL Gross">
@@ -156,7 +172,9 @@ button{
 <input id="i_ldr" placeholder="LDR">
 <input id="i_cash" placeholder="Cash Ratio">
 
-<button onclick="updateData()">Update Data</button>
+<button onclick="updateData();closeModal()">Simpan Data</button>
+
+</div>
 </div>
 
 <!-- BACKGROUND -->
@@ -242,9 +260,19 @@ d="M0,224L80,208C160,192,320,160,480,176C640,192,800,256,960,256C1120,256,1280,1
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <script>
-function toggleForm(){
-    let form = document.getElementById("formBox");
-    form.style.display = (form.style.display === "none") ? "block" : "none";
+function openModal(){
+    document.getElementById("modalForm").style.display = "block";
+}
+
+function closeModal(){
+    document.getElementById("modalForm").style.display = "none";
+}
+
+window.onclick = function(e){
+    let modal = document.getElementById("modalForm");
+    if(e.target == modal){
+        modal.style.display = "none";
+    }
 }
 
 function formatAngka(x){
