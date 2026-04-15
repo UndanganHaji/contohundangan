@@ -219,10 +219,55 @@ body {
 }
 
 
+/* CARD DATA (FOTO 1) */
+.card-data {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-data::after {
+    content: "";
+    position: absolute;
+    right: -50px;
+    bottom: 0;
+    width: 350px;
+    height: 100%;
+    background: url('foto1.png') no-repeat right bottom;
+    background-size: contain;
+    opacity: 0.25;
+    pointer-events: none;
+}
+
+/* CARD RASIO (FOTO 2) */
+.card-ratio {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-ratio::after {
+    content: "";
+    position: absolute;
+    right: -30px;
+    bottom: -20px;
+    width: 400px;
+    height: 100%;
+    background: url('foto2.png') no-repeat right bottom;
+    background-size: contain;
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+/* SUPAYA TEXT TETAP DI ATAS */
+.card * {
+    position: relative;
+    z-index: 2;
+}
 
 
-
-
+.card-data::after,
+.card-ratio::after {
+    filter: blur(0.3px);
+}
 
 
 
@@ -272,7 +317,7 @@ body {
     <!-- DATA -->
     <div class="section">
         <div class="section-title">Ikhtisar Data Keuangan Penting</div>
-        <div class="card">
+        <div class="card card-data">
             <div class="grid-2">
 
                 <div class="item">
@@ -330,7 +375,7 @@ body {
     <!-- RASIO -->
     <div class="section">
         <div class="section-title">Rasio Keuangan</div>
-        <div class="card">
+        <div class="card card-ratio">
 
             <div class="grid-3">
 
