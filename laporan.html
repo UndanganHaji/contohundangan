@@ -20,12 +20,12 @@ body{
 
 /* FORM */
 .form-box{
-    background:white;
     max-width:1000px;
-    margin:20px auto;
-    padding:20px;
+    margin:15px auto;
+    background:white;
+    padding:15px;
     border-radius:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
 }
 .form-box input{
     width:100%;
@@ -33,9 +33,6 @@ body{
     margin:5px 0;
     border-radius:8px;
     border:1px solid #ddd;
-}
-.form-box button{
-    margin-top:10px;
 }
 
 /* BACKGROUND */
@@ -51,113 +48,49 @@ body{
 .header{text-align:center;padding:40px 10px 20px;}
 .header h1{font-size:34px;color:#1f4f82;}
 .header h2{font-size:22px;}
-.badge{
-    margin-top:15px;
-    display:inline-block;
-    background:linear-gradient(135deg,#2c6fb7,#4da3ff);
-    color:white;
-    padding:10px 25px;
-    border-radius:30px;
-}
+.badge{margin-top:15px;display:inline-block;background:linear-gradient(135deg,#2c6fb7,#4da3ff);color:white;padding:10px 25px;border-radius:30px;}
 
 /* SECTION */
 .section{margin-top:25px;}
-.section-title{
-    background:linear-gradient(135deg,#2c6fb7,#4da3ff);
-    color:white;
-    padding:12px 25px;
-    border-radius:20px 20px 0 0;
-    display:inline-block;
-}
+.section-title{background:linear-gradient(135deg,#2c6fb7,#4da3ff);color:white;padding:12px 25px;border-radius:20px 20px 0 0;display:inline-block;}
 
 /* CARD */
-.card{
-    background:rgba(255,255,255,0.95);
-    padding:18px;
-    border-radius:0 20px 20px 20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.08);
-}
+.card{background:rgba(255,255,255,0.95);padding:18px;border-radius:0 20px 20px 20px;box-shadow:0 10px 30px rgba(0,0,0,0.08);}
 
-/* CARD DATA */
-.card-data{display:flex;overflow:hidden;}
+/* DATA */
+.card-data{display:flex;}
 .data-content{width:58%;}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 
-.item{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    background:#f4f9ff;
-    padding:8px 10px;
-    border-radius:12px;
-}
-
-.icon{
-    width:36px;height:36px;font-size:14px;
-    background:linear-gradient(135deg,#2c6fb7,#4da3ff);
-    border-radius:10px;
-    display:flex;align-items:center;justify-content:center;
-    color:white;
-}
-
-.label{font-size:11px;}
+.item{display:flex;align-items:center;gap:8px;background:#f4f9ff;padding:8px 10px;border-radius:12px;}
+.icon{width:36px;height:36px;font-size:14px;background:linear-gradient(135deg,#2c6fb7,#4da3ff);border-radius:10px;display:flex;align-items:center;justify-content:center;color:white;}
 .value{font-size:16px;font-weight:600;}
 
-.data-bg{
-    width:40%;
-    background:url('foto1.png') no-repeat right bottom;
-    background-size:contain;
-}
+.data-bg{width:40%;background:url('foto1.png') no-repeat right bottom;background-size:contain;opacity:0.9;}
 
 /* RASIO */
-.grid-3{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-}
-
-.ratio{
-    background:#f4f9ff;
-    padding:12px;
-    border-radius:12px;
-}
-
-.ratio-left{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.circle{
-    width:40px;height:40px;
-    background:#2c6fb7;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:white;
-}
-
-.ratio-bottom{
-    margin-top:15px;
-    border-radius:12px;
-    overflow:hidden;
-}
+.grid-3{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;}
+.ratio{background:#f4f9ff;padding:15px;border-radius:12px;}
+.ratio-left{display:flex;align-items:center;gap:10px;}
+.circle{width:40px;height:40px;background:#2c6fb7;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;}
 
 .ratio-bottom img{
     width:100%;
-    height:120px;
+    height:180px;
     object-fit:cover;
-    display:block;
+    margin-top:15px;
+    border-radius:12px;
 }
 
 /* BUTTON */
 button{
-    padding:10px 20px;
+    margin-top:20px;
+    padding:12px 25px;
     border:none;
-    border-radius:25px;
+    border-radius:30px;
     background:linear-gradient(135deg,#2c6fb7,#4da3ff);
     color:white;
+    font-weight:600;
     cursor:pointer;
 }
 
@@ -174,16 +107,16 @@ button{
 
 <!-- FORM -->
 <div class="form-box">
-<h3>Input Data Keuangan</h3>
+<b>Input Data</b>
 
 <input id="i_pendapatan" placeholder="Pendapatan Operasional">
 <input id="i_beban" placeholder="Beban Operasional">
-<input id="i_beban_papat" placeholder="Beban Papat Operasional">
-<input id="i_beban_lain" placeholder="Beban Operasional Lain">
+<input id="i_beban_papat" placeholder="Beban Papat">
+<input id="i_beban_lain" placeholder="Beban Lain">
 <input id="i_pendapatan_lain" placeholder="Pendapatan Non Operasional">
-<input id="i_laba" placeholder="Laba Tahun Berjalan">
+<input id="i_laba" placeholder="Laba">
 
-<h4>Rasio (%)</h4>
+<b>Rasio (%)</b>
 <input id="i_kpmm" placeholder="KPMM">
 <input id="i_nplnet" placeholder="NPL Neto">
 <input id="i_nplgross" placeholder="NPL Gross">
@@ -199,13 +132,25 @@ button{
 <!-- BACKGROUND -->
 <div class="bg-wrapper">
 <div class="sky"></div>
+
+<svg class="mountain" viewBox="0 0 1440 320">
+<path fill="#bcdcff" fill-opacity="0.6"
+d="M0,224L80,208C160,192,320,160,480,176C640,192,800,256,960,256C1120,256,1280,192,1360,160L1440,128V320H0Z"></path>
+</svg>
+
+<svg class="city" viewBox="0 0 1440 320">
+<rect x="100" y="120" width="80" height="200" fill="#9ec5e8"/>
+<rect x="220" y="100" width="100" height="220" fill="#7fb3e6"/>
+<rect x="360" y="140" width="90" height="180" fill="#9ec5e8"/>
+<rect x="500" y="90" width="110" height="230" fill="#7fb3e6"/>
+</svg>
 </div>
 
 <div class="container" id="capture">
 
 <div class="header">
 <h1>Ikhtisar Utama Keuangan</h1>
-<h2>PT. BPR PRIMA NADI</h2>
+<h2>Laporan Tahunan PT. BPR PRIMA NADI</h2>
 <div class="badge">Tahun 2025</div>
 </div>
 
@@ -214,27 +159,20 @@ button{
 <div class="section-title">Ikhtisar Data Keuangan Penting</div>
 
 <div class="card card-data">
-
 <div class="data-content">
 <div class="grid-2">
 
-<div class="item"><div class="icon"><i class="fas fa-coins"></i></div><div><div>Pendapatan Operasional</div><div class="value" id="v_pendapatan">84.656.240.801</div></div></div>
-
-<div class="item"><div class="icon"><i class="fas fa-chart-line"></i></div><div><div>Beban Operasional</div><div class="value" id="v_beban">60.320.989.108</div></div></div>
-
-<div class="item"><div class="icon"><i class="fas fa-file-invoice"></i></div><div><div>Beban Papat Operasional</div><div class="value" id="v_beban_papat">60.320.989.108</div></div></div>
-
-<div class="item"><div class="icon"><i class="fas fa-wallet"></i></div><div><div>Beban Operasional Lain</div><div class="value" id="v_beban_lain">751.454.000</div></div></div>
-
-<div class="item"><div class="icon"><i class="fas fa-money-bill-wave"></i></div><div><div>Pendapatan Non Operasional</div><div class="value" id="v_pendapatan_lain">750.000</div></div></div>
-
-<div class="item"><div class="icon"><i class="fas fa-trophy"></i></div><div><div>Laba Tahun Berjalan</div><div class="value" id="v_laba">21.264.204.303</div></div></div>
+<div class="item"><div class="icon"><i class="fas fa-coins"></i></div><div>Pendapatan<div class="value" id="v_pendapatan">0</div></div></div>
+<div class="item"><div class="icon"><i class="fas fa-chart-line"></i></div><div>Beban<div class="value" id="v_beban">0</div></div></div>
+<div class="item"><div class="icon"><i class="fas fa-file-invoice"></i></div><div>Beban Papat<div class="value" id="v_beban_papat">0</div></div></div>
+<div class="item"><div class="icon"><i class="fas fa-wallet"></i></div><div>Beban Lain<div class="value" id="v_beban_lain">0</div></div></div>
+<div class="item"><div class="icon"><i class="fas fa-money-bill-wave"></i></div><div>Pendapatan Non Ops<div class="value" id="v_pendapatan_lain">0</div></div></div>
+<div class="item"><div class="icon"><i class="fas fa-trophy"></i></div><div>Laba<div class="value" id="v_laba">0</div></div></div>
 
 </div>
 </div>
 
 <div class="data-bg"></div>
-
 </div>
 </div>
 
@@ -246,14 +184,14 @@ button{
 
 <div class="grid-3">
 
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-user"></i></div>KPMM <span class="value" id="r_kpmm">49,06%</span></div></div>
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-percent"></i></div>NPL Neto <span class="value" id="r_nplnet">18,04%</span></div></div>
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-chart-bar"></i></div>NPL Gross <span class="value" id="r_nplgross">19,08%</span></div></div>
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-chart-pie"></i></div>ROA <span class="value" id="r_roa">2,09%</span></div></div>
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-balance-scale"></i></div>BOPO <span class="value" id="r_bopo">68,05%</span></div></div>
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-chart-area"></i></div>NIM <span class="value" id="r_nim">7,07%</span></div></div>
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-exchange-alt"></i></div>LDR <span class="value" id="r_ldr">69,18%</span></div></div>
-<div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-wallet"></i></div>Cash Ratio <span class="value" id="r_cash">15,26%</span></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle">%</div>KPMM <span class="value" id="r_kpmm">0%</span></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle">%</div>NPL Neto <span class="value" id="r_nplnet">0%</span></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle">%</div>NPL Gross <span class="value" id="r_nplgross">0%</span></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle">%</div>ROA <span class="value" id="r_roa">0%</span></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle">%</div>BOPO <span class="value" id="r_bopo">0%</span></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle">%</div>NIM <span class="value" id="r_nim">0%</span></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle">%</div>LDR <span class="value" id="r_ldr">0%</span></div></div>
+<div class="ratio"><div class="ratio-left"><div class="circle">%</div>Cash <span class="value" id="r_cash">0%</span></div></div>
 
 </div>
 
@@ -296,8 +234,7 @@ function updateData(){
 }
 
 function downloadPNG(){
-    html2canvas(document.getElementById("capture"),{scale:2})
-    .then(canvas=>{
+    html2canvas(document.getElementById("capture"),{scale:2}).then(canvas=>{
         let link=document.createElement("a");
         link.download="laporan-keuangan.png";
         link.href=canvas.toDataURL();
