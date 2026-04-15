@@ -41,6 +41,12 @@ body{
     border-radius:8px;
     border:1px solid #ddd;
 }
+.form-box label{
+    font-size:13px;
+    font-weight:600;
+    margin-top:8px;
+    display:block;
+}
 
 .overlay{
     display:none;
@@ -50,13 +56,10 @@ body{
     z-index:998;
 }
 
-/* CONTAINER */
-.container{position:relative;z-index:2;max-width:1000px;margin:auto;padding:20px;}
-
-/* HEADER */
+/* LAYOUT */
+.container{max-width:1000px;margin:auto;padding:20px;}
 .header{text-align:center;padding:40px 10px 20px;}
 .header h1{font-size:34px;color:#1f4f82;}
-.header h2{font-size:22px;}
 
 .badge{
     margin-top:15px;
@@ -74,7 +77,6 @@ body{
     color:white;
     padding:12px 25px;
     border-radius:20px 20px 0 0;
-    display:inline-block;
 }
 
 /* CARD */
@@ -82,12 +84,11 @@ body{
     background:white;
     padding:18px;
     border-radius:0 20px 20px 20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.08);
 }
 
 /* DATA */
 .card-data{display:flex;}
-.data-content{width:58%;}
+.data-content{width:60%;}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 
 .item{
@@ -95,7 +96,7 @@ body{
     align-items:center;
     gap:8px;
     background:#f4f9ff;
-    padding:8px 10px;
+    padding:8px;
     border-radius:12px;
 }
 
@@ -119,23 +120,19 @@ body{
 }
 
 /* RASIO */
-.grid-3{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;}
+.grid-3{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
 
-.ratio{
-    background:#f4f9ff;
-    padding:15px;
-    border-radius:12px;
-}
+.ratio{background:#f4f9ff;padding:10px;border-radius:10px;}
 
 .ratio-left{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:8px;
 }
 
 .circle{
-    width:40px;
-    height:40px;
+    width:36px;
+    height:36px;
     background:linear-gradient(135deg,#2c6fb7,#4da3ff);
     border-radius:50%;
     display:flex;
@@ -148,25 +145,23 @@ body{
     width:100%;
     height:180px;
     object-fit:cover;
-    margin-top:15px;
-    border-radius:12px;
+    margin-top:10px;
+    border-radius:10px;
 }
 
 button{
     margin-top:10px;
     padding:10px 20px;
     border:none;
-    border-radius:30px;
-    background:linear-gradient(135deg,#2c6fb7,#4da3ff);
+    border-radius:20px;
+    background:#2c6fb7;
     color:white;
     cursor:pointer;
 }
 
-/* RESPONSIVE */
 @media(max-width:768px){
     .card-data{flex-direction:column;}
     .data-content,.data-bg{width:100%;}
-    .data-bg{height:200px;}
     .grid-3{grid-template-columns:1fr 1fr;}
 }
 </style>
@@ -185,21 +180,49 @@ button{
 <button onclick="closeForm()">❌</button>
 
 <b>Input Data</b>
-<input id="i_pendapatan" placeholder="Pendapatan">
-<input id="i_beban" placeholder="Beban">
-<input id="i_beban_papat" placeholder="Beban Papat">
-<input id="i_beban_lain" placeholder="Beban Lain">
-<input id="i_pendapatan_lain" placeholder="Pendapatan Non Ops">
-<input id="i_laba" placeholder="Laba">
+
+<label>Pendapatan</label>
+<input id="i_pendapatan">
+
+<label>Beban</label>
+<input id="i_beban">
+
+<label>Beban Papat</label>
+<input id="i_beban_papat">
+
+<label>Beban Lain</label>
+<input id="i_beban_lain">
+
+<label>Pendapatan Non Operasional</label>
+<input id="i_pendapatan_lain">
+
+<label>Laba</label>
+<input id="i_laba">
 
 <b>Rasio (%)</b>
+
+<label>KPMM</label>
 <input id="i_kpmm">
+
+<label>NPL Neto</label>
 <input id="i_nplnet">
+
+<label>NPL Gross</label>
 <input id="i_nplgross">
+
+<label>ROA</label>
 <input id="i_roa">
+
+<label>BOPO</label>
 <input id="i_bopo">
+
+<label>NIM</label>
 <input id="i_nim">
+
+<label>LDR</label>
 <input id="i_ldr">
+
+<label>Cash Ratio</label>
 <input id="i_cash">
 
 <button onclick="updateData()">Update</button>
@@ -209,13 +232,12 @@ button{
 
 <div class="header">
 <h1>Ikhtisar Utama Keuangan</h1>
-<h2>Laporan Tahunan</h2>
 <div class="badge">2025</div>
 </div>
 
 <!-- DATA -->
 <div class="section">
-<div class="section-title">Ikhtisar Data Keuangan</div>
+<div class="section-title">Data Keuangan</div>
 
 <div class="card card-data">
 
@@ -246,19 +268,12 @@ button{
 <div class="grid-3">
 
 <div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-percentage"></i></div>KPMM <span id="r_kpmm">0%</span></div></div>
-
 <div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-chart-pie"></i></div>NPL Neto <span id="r_nplnet">0%</span></div></div>
-
 <div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-chart-bar"></i></div>NPL Gross <span id="r_nplgross">0%</span></div></div>
-
 <div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-chart-line"></i></div>ROA <span id="r_roa">0%</span></div></div>
-
 <div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-balance-scale"></i></div>BOPO <span id="r_bopo">0%</span></div></div>
-
 <div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-coins"></i></div>NIM <span id="r_nim">0%</span></div></div>
-
 <div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-exchange-alt"></i></div>LDR <span id="r_ldr">0%</span></div></div>
-
 <div class="ratio"><div class="ratio-left"><div class="circle"><i class="fas fa-wallet"></i></div>Cash <span id="r_cash">0%</span></div></div>
 
 </div>
@@ -273,15 +288,11 @@ button{
 </div>
 
 <script>
-function formatAngka(x){
-    return new Intl.NumberFormat('id-ID').format(x||0);
-}
-function clean(x){
-    return x.replace(/\./g,"");
-}
+function formatAngka(x){return new Intl.NumberFormat('id-ID').format(x||0);}
+function clean(x){return x.replace(/\./g,"");}
 function formatInput(el){
-    let v = el.value.replace(/\D/g,"");
-    el.value = new Intl.NumberFormat('id-ID').format(v);
+    let v=el.value.replace(/\D/g,"");
+    el.value=new Intl.NumberFormat('id-ID').format(v);
 }
 
 document.querySelectorAll(".form-box input").forEach(i=>{
@@ -292,21 +303,21 @@ document.querySelectorAll(".form-box input").forEach(i=>{
 });
 
 function updateData(){
-    v_pendapatan.innerText = formatAngka(clean(i_pendapatan.value));
-    v_beban.innerText = formatAngka(clean(i_beban.value));
-    v_beban_papat.innerText = formatAngka(clean(i_beban_papat.value));
-    v_beban_lain.innerText = formatAngka(clean(i_beban_lain.value));
-    v_pendapatan_lain.innerText = formatAngka(clean(i_pendapatan_lain.value));
-    v_laba.innerText = formatAngka(clean(i_laba.value));
+    v_pendapatan.innerText=formatAngka(clean(i_pendapatan.value));
+    v_beban.innerText=formatAngka(clean(i_beban.value));
+    v_beban_papat.innerText=formatAngka(clean(i_beban_papat.value));
+    v_beban_lain.innerText=formatAngka(clean(i_beban_lain.value));
+    v_pendapatan_lain.innerText=formatAngka(clean(i_pendapatan_lain.value));
+    v_laba.innerText=formatAngka(clean(i_laba.value));
 
-    r_kpmm.innerText = i_kpmm.value+"%";
-    r_nplnet.innerText = i_nplnet.value+"%";
-    r_nplgross.innerText = i_nplgross.value+"%";
-    r_roa.innerText = i_roa.value+"%";
-    r_bopo.innerText = i_bopo.value+"%";
-    r_nim.innerText = i_nim.value+"%";
-    r_ldr.innerText = i_ldr.value+"%";
-    r_cash.innerText = i_cash.value+"%";
+    r_kpmm.innerText=i_kpmm.value+"%";
+    r_nplnet.innerText=i_nplnet.value+"%";
+    r_nplgross.innerText=i_nplgross.value+"%";
+    r_roa.innerText=i_roa.value+"%";
+    r_bopo.innerText=i_bopo.value+"%";
+    r_nim.innerText=i_nim.value+"%";
+    r_ldr.innerText=i_ldr.value+"%";
+    r_cash.innerText=i_cash.value+"%";
 
     saveData();
     closeForm();
@@ -322,7 +333,7 @@ function saveData(){
 
 function loadData(){
     let data=JSON.parse(localStorage.getItem("laporan"));
-    if(!data) return;
+    if(!data)return;
 
     document.querySelectorAll(".form-box input").forEach(i=>{
         i.value=data[i.id]||"";
