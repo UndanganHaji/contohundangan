@@ -18,7 +18,17 @@ body{
     color:#1f3c5b;
 }
 
-/* TOGGLE BUTTON */
+/* ===================== */
+/* FIX Z-INDEX UTAMA */
+/* ===================== */
+.bg-wrapper{position:fixed;inset:0;z-index:0;}
+.container{position:relative;z-index:2;}
+.toggle-btn{position:relative;z-index:10;}
+.form-box{position:relative;z-index:9;}
+
+/* ===================== */
+/* TOMBOL */
+/* ===================== */
 .toggle-btn{
     display:block;
     margin:15px auto;
@@ -29,12 +39,13 @@ body{
     color:white;
     font-weight:600;
     cursor:pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
 }
 
+/* ===================== */
 /* FORM */
+/* ===================== */
 .form-box{
-    position:relative;
-    z-index:5;
     max-width:1000px;
     margin:10px auto;
     background:white;
@@ -53,13 +64,12 @@ body{
 }
 
 /* BACKGROUND */
-.bg-wrapper{position:fixed;inset:0;z-index:0;}
 .sky{position:absolute;width:100%;height:100%;background:linear-gradient(to bottom,#cfe8ff,#ffffff);}
 .mountain{position:absolute;bottom:0;width:100%;}
 .city{position:absolute;bottom:0;width:100%;opacity:0.7;}
 
 /* CONTAINER */
-.container{position:relative;z-index:2;max-width:1000px;margin:auto;padding:20px;}
+.container{max-width:1000px;margin:auto;padding:20px;}
 
 /* HEADER */
 .header{text-align:center;padding:40px 10px 20px;}
@@ -122,7 +132,7 @@ button{
 
 <body>
 
-<!-- TOGGLE BUTTON -->
+<!-- TOMBOL -->
 <button class="toggle-btn" onclick="toggleForm()">📊 Input Data</button>
 
 <!-- FORM -->
@@ -166,6 +176,7 @@ d="M0,224L80,208C160,192,320,160,480,176C640,192,800,256,960,256C1120,256,1280,1
 </svg>
 </div>
 
+<!-- CONTENT -->
 <div class="container" id="capture">
 
 <div class="header">
