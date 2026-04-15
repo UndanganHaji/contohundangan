@@ -292,17 +292,36 @@ button{
 function formatAngka(x){return new Intl.NumberFormat('id-ID').format(x||0);}
 function clean(x){return x.replace(/\./g,"");}
 function formatInput(el){
-    let v = el.value.replace(/\D/g,"");
+    let val = el.value;
 
-    if(el.id.startsWith("i_") && !el.id.includes("kpmm") && !el.id.includes("npl") && !el.id.includes("roa") && !el.id.includes("bopo") && !el.id.includes("nim") && !el.id.includes("ldr") && !el.id.includes("cash")){
+    // CEK: DATA atau RASIO
+    const isRasio = el.id.includes("kpmm") || el.id.includes("npl") || el.id.includes("roa") || el.id.includes("bopo") || el.id.includes("nim") || el.id.includes("ldr") || el.id.includes("cash");
+
+    if(!isRasio){
+        // ======================
         // FORMAT DATA (RUPIAH)
-        el.value = new Intl.NumberFormat('id-ID').format(v);
-    } else {
-        // FORMAT RASIO (2 DESIMAL)
-        let num = (parseFloat(v) / 100).toFixed(2);
-        if(!isNaN(num)){
-            el.value = num.replace(".",",");
+        // ======================
+        val = val.replace(/\D/g,""); // hanya angka
+
+        if(val){
+            el.value = new Intl.NumberFormat('id-ID').format(val);
+        } else {
+            el.value = "";
         }
+
+    } else {
+        // ======================
+        // FORMAT RASIO (%)
+        // ======================
+        val = val.replace(/[^0-9,]/g,""); // hanya angka & koma
+
+        // hanya boleh 1 koma
+        let parts = val.split(",");
+        if(parts.length > 2){
+            val = parts[0] + "," + parts[1];
+        }
+
+        el.value = val;
     }
 }
 
