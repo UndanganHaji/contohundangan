@@ -290,33 +290,46 @@ button{
 function formatAngka(x){return new Intl.NumberFormat('id-ID').format(x||0);}
 function clean(x){return x.replace(/\./g,"");}
 function formatInput(el){
-    let v=el.value.replace(/\D/g,"");
-    el.value=new Intl.NumberFormat('id-ID').format(v);
+    let v = el.value.replace(/\D/g,"");
+
+    if(el.id.startsWith("i_") && !el.id.includes("kpmm") && !el.id.includes("npl") && !el.id.includes("roa") && !el.id.includes("bopo") && !el.id.includes("nim") && !el.id.includes("ldr") && !el.id.includes("cash")){
+        // FORMAT DATA (RUPIAH)
+        el.value = new Intl.NumberFormat('id-ID').format(v);
+    } else {
+        // FORMAT RASIO (2 DESIMAL)
+        let num = (parseFloat(v) / 100).toFixed(2);
+        if(!isNaN(num)){
+            el.value = num.replace(".",",");
+        }
+    }
 }
 
-document.querySelectorAll(".form-box input").forEach(i=>{
-    i.addEventListener("input",()=>{
-        formatInput(i);
-        saveData();
-    });
-});
+function formatRupiahAkhir(x){
+    return new Intl.NumberFormat('id-ID').format(x||0) + ",-";
+}
+
+function formatPersen(x){
+    let num = parseFloat(x.replace(",","."));
+    if(isNaN(num)) return "0,00%";
+    return num.toFixed(2).replace(".",",") + "%";
+}
 
 function updateData(){
-    v_pendapatan.innerText=formatAngka(clean(i_pendapatan.value));
-    v_beban.innerText=formatAngka(clean(i_beban.value));
-    v_beban_papat.innerText=formatAngka(clean(i_beban_papat.value));
-    v_beban_lain.innerText=formatAngka(clean(i_beban_lain.value));
-    v_pendapatan_lain.innerText=formatAngka(clean(i_pendapatan_lain.value));
-    v_laba.innerText=formatAngka(clean(i_laba.value));
+    v_pendapatan.innerText = formatRupiahAkhir(clean(i_pendapatan.value));
+    v_beban.innerText = formatRupiahAkhir(clean(i_beban.value));
+    v_beban_papat.innerText = formatRupiahAkhir(clean(i_beban_papat.value));
+    v_beban_lain.innerText = formatRupiahAkhir(clean(i_beban_lain.value));
+    v_pendapatan_lain.innerText = formatRupiahAkhir(clean(i_pendapatan_lain.value));
+    v_laba.innerText = formatRupiahAkhir(clean(i_laba.value));
 
-    r_kpmm.innerText=i_kpmm.value+"%";
-    r_nplnet.innerText=i_nplnet.value+"%";
-    r_nplgross.innerText=i_nplgross.value+"%";
-    r_roa.innerText=i_roa.value+"%";
-    r_bopo.innerText=i_bopo.value+"%";
-    r_nim.innerText=i_nim.value+"%";
-    r_ldr.innerText=i_ldr.value+"%";
-    r_cash.innerText=i_cash.value+"%";
+    r_kpmm.innerText = formatPersen(i_kpmm.value);
+    r_nplnet.innerText = formatPersen(i_nplnet.value);
+    r_nplgross.innerText = formatPersen(i_nplgross.value);
+    r_roa.innerText = formatPersen(i_roa.value);
+    r_bopo.innerText = formatPersen(i_bopo.value);
+    r_nim.innerText = formatPersen(i_nim.value);
+    r_ldr.innerText = formatPersen(i_ldr.value);
+    r_cash.innerText = formatPersen(i_cash.value);
 
     saveData();
     closeForm();
