@@ -7,6 +7,7 @@
 <title>Ikhtisar Keuangan Premium</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
 <style>
 * {
@@ -17,12 +18,24 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to bottom, #dfefff, #ffffff);
     color: #1f3c5b;
+    background: linear-gradient(to bottom, #d9ecff, #ffffff);
+}
+
+/* BACKGROUND GEDUNG */
+.bg-city {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0.15;
+    z-index: 0;
 }
 
 /* CONTAINER */
 .container {
+    position: relative;
+    z-index: 2;
     max-width: 1000px;
     margin: auto;
     padding: 20px;
@@ -31,12 +44,13 @@ body {
 /* HEADER */
 .header {
     text-align: center;
-    padding: 40px 10px;
+    padding: 40px 10px 20px;
 }
 
 .header h1 {
     font-size: 34px;
     font-weight: 600;
+    color: #1f4f82;
 }
 
 .header h2 {
@@ -49,31 +63,32 @@ body {
     margin-top: 15px;
     background: linear-gradient(135deg, #2c6fb7, #4da3ff);
     color: white;
-    padding: 10px 25px;
-    border-radius: 25px;
+    padding: 10px 30px;
+    border-radius: 30px;
     font-weight: 500;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 /* SECTION */
 .section {
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .section-title {
     background: linear-gradient(135deg, #2c6fb7, #4da3ff);
     color: white;
-    padding: 10px 20px;
-    border-radius: 15px 15px 0 0;
+    padding: 12px 25px;
+    border-radius: 20px 20px 0 0;
     display: inline-block;
     font-weight: 500;
 }
 
 /* CARD */
 .card {
-    background: white;
+    background: rgba(255,255,255,0.95);
     padding: 20px;
-    border-radius: 0 15px 15px 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    border-radius: 0 20px 20px 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
 /* GRID DATA */
@@ -86,24 +101,31 @@ body {
 .item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    background: #f5f9ff;
+    gap: 12px;
+    background: #f4f9ff;
     padding: 12px;
     border-radius: 12px;
 }
 
+/* ICON */
 .icon {
-    width: 40px;
-    height: 40px;
-    background: #2c6fb7;
-    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #2c6fb7, #4da3ff);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
 }
 
-.text .label {
+/* TEXT */
+.label {
     font-size: 12px;
 }
 
-.text .value {
+.value {
     font-size: 18px;
     font-weight: 600;
 }
@@ -116,24 +138,28 @@ body {
 }
 
 .ratio {
-    background: #f5f9ff;
+    background: #f4f9ff;
     text-align: center;
     padding: 15px;
     border-radius: 12px;
 }
 
-.ratio .circle {
-    width: 50px;
-    height: 50px;
+.circle {
+    width: 55px;
+    height: 55px;
     margin: auto;
-    background: #2c6fb7;
+    background: linear-gradient(135deg, #2c6fb7, #4da3ff);
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
     margin-bottom: 10px;
 }
 
 .ratio .value {
     font-size: 22px;
-    font-weight: 600;
 }
 
 /* RESPONSIVE */
@@ -146,10 +172,12 @@ body {
     }
 }
 </style>
-
 </head>
 
 <body>
+
+<!-- BACKGROUND GEDUNG -->
+<img src="https://i.ibb.co/8XwXW9k/city.png" class="bg-city">
 
 <div class="container">
 
@@ -160,55 +188,55 @@ body {
         <div class="badge">Tahun 2025</div>
     </div>
 
-    <!-- DATA KEUANGAN -->
+    <!-- DATA -->
     <div class="section">
         <div class="section-title">Ikhtisar Data Keuangan Penting</div>
         <div class="card">
             <div class="grid-2">
 
                 <div class="item">
-                    <div class="icon"></div>
-                    <div class="text">
+                    <div class="icon"><i class="fas fa-coins"></i></div>
+                    <div>
                         <div class="label">Pendapatan Operasional</div>
                         <div class="value">84.656.240.801</div>
                     </div>
                 </div>
 
                 <div class="item">
-                    <div class="icon"></div>
-                    <div class="text">
+                    <div class="icon"><i class="fas fa-chart-line"></i></div>
+                    <div>
                         <div class="label">Beban Operasional</div>
                         <div class="value">60.320.989.108</div>
                     </div>
                 </div>
 
                 <div class="item">
-                    <div class="icon"></div>
-                    <div class="text">
+                    <div class="icon"><i class="fas fa-file-invoice"></i></div>
+                    <div>
                         <div class="label">Beban Papat Operasional</div>
                         <div class="value">60.320.989.108</div>
                     </div>
                 </div>
 
                 <div class="item">
-                    <div class="icon"></div>
-                    <div class="text">
+                    <div class="icon"><i class="fas fa-wallet"></i></div>
+                    <div>
                         <div class="label">Beban Operasional Lain</div>
                         <div class="value">751.454.000</div>
                     </div>
                 </div>
 
                 <div class="item">
-                    <div class="icon"></div>
-                    <div class="text">
+                    <div class="icon"><i class="fas fa-money-bill-wave"></i></div>
+                    <div>
                         <div class="label">Pendapatan Non Operasional</div>
                         <div class="value">750.000</div>
                     </div>
                 </div>
 
                 <div class="item">
-                    <div class="icon"></div>
-                    <div class="text">
+                    <div class="icon"><i class="fas fa-trophy"></i></div>
+                    <div>
                         <div class="label">Laba Tahun Berjalan</div>
                         <div class="value">21.264.204.303</div>
                     </div>
@@ -226,49 +254,49 @@ body {
             <div class="grid-3">
 
                 <div class="ratio">
-                    <div class="circle"></div>
+                    <div class="circle"><i class="fas fa-user-tie"></i></div>
                     <div>KPMM</div>
                     <div class="value">49,06</div>
                 </div>
 
                 <div class="ratio">
-                    <div class="circle"></div>
+                    <div class="circle"><i class="fas fa-percent"></i></div>
                     <div>NPL Neto</div>
                     <div class="value">18,04</div>
                 </div>
 
                 <div class="ratio">
-                    <div class="circle"></div>
+                    <div class="circle"><i class="fas fa-chart-bar"></i></div>
                     <div>NPL Gross</div>
                     <div class="value">19,08</div>
                 </div>
 
                 <div class="ratio">
-                    <div class="circle"></div>
+                    <div class="circle"><i class="fas fa-chart-pie"></i></div>
                     <div>ROA</div>
                     <div class="value">2,09</div>
                 </div>
 
                 <div class="ratio">
-                    <div class="circle"></div>
+                    <div class="circle"><i class="fas fa-balance-scale"></i></div>
                     <div>BOPO</div>
                     <div class="value">68,05</div>
                 </div>
 
                 <div class="ratio">
-                    <div class="circle"></div>
+                    <div class="circle"><i class="fas fa-chart-area"></i></div>
                     <div>NIM</div>
                     <div class="value">7,07</div>
                 </div>
 
                 <div class="ratio">
-                    <div class="circle"></div>
+                    <div class="circle"><i class="fas fa-exchange-alt"></i></div>
                     <div>LDR</div>
                     <div class="value">69,18</div>
                 </div>
 
                 <div class="ratio">
-                    <div class="circle"></div>
+                    <div class="circle"><i class="fas fa-wallet"></i></div>
                     <div>Cash Ratio</div>
                     <div class="value">15,26</div>
                 </div>
