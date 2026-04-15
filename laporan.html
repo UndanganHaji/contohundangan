@@ -18,22 +18,22 @@ body{
     color:#1f3c5b;
 }
 
-/* ================= BACKGROUND ================= */
+/* BACKGROUND */
 .bg-wrapper{position:fixed;inset:0;z-index:0;}
 .sky{position:absolute;width:100%;height:100%;background:linear-gradient(to bottom,#cfe8ff,#ffffff);}
 .mountain{position:absolute;bottom:0;width:100%;}
 .city{position:absolute;bottom:0;width:100%;opacity:0.7;}
 
-/* ================= CONTAINER ================= */
+/* CONTAINER */
 .container{position:relative;z-index:2;max-width:1000px;margin:auto;padding:20px;}
 
-/* ================= HEADER ================= */
+/* HEADER */
 .header{text-align:center;padding:40px 10px 20px;}
 .header h1{font-size:34px;color:#1f4f82;}
 .header h2{font-size:22px;}
 .badge{margin-top:15px;display:inline-block;background:linear-gradient(135deg,#2c6fb7,#4da3ff);color:white;padding:10px 25px;border-radius:30px;}
 
-/* ================= BUTTON ================= */
+/* BUTTON */
 .toggle-btn{
     position:relative;
     z-index:5;
@@ -49,14 +49,14 @@ body{
     box-shadow:0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* ================= SECTION ================= */
+/* SECTION */
 .section{margin-top:25px;}
 .section-title{background:linear-gradient(135deg,#2c6fb7,#4da3ff);color:white;padding:12px 25px;border-radius:20px 20px 0 0;display:inline-block;}
 
-/* ================= CARD ================= */
+/* CARD */
 .card{background:rgba(255,255,255,0.95);padding:18px;border-radius:0 20px 20px 20px;box-shadow:0 10px 30px rgba(0,0,0,0.08);}
 
-/* ================= DATA ================= */
+/* DATA */
 .card-data{display:flex;}
 .data-content{width:58%;}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
@@ -67,7 +67,7 @@ body{
 
 .data-bg{width:40%;background:url('foto1.png') no-repeat right bottom;background-size:contain;opacity:0.9;}
 
-/* ================= RASIO ================= */
+/* RASIO */
 .grid-3{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;}
 .ratio{background:#f4f9ff;padding:15px;border-radius:12px;}
 .ratio-left{display:flex;align-items:center;gap:10px;}
@@ -81,7 +81,7 @@ body{
     border-radius:12px;
 }
 
-/* ================= MODAL ================= */
+/* MODAL */
 .modal{
     display:none;
     position:fixed;
@@ -91,6 +91,7 @@ body{
     background:rgba(0,0,0,0.5);
 }
 
+/* ⭐ FIX SCROLL DISINI */
 .modal-content{
     background:white;
     margin:5% auto;
@@ -98,9 +99,21 @@ body{
     width:90%;
     max-width:500px;
     border-radius:15px;
+
+    max-height:90vh;
+    overflow-y:auto;
+
     animation:fadeIn 0.3s ease;
 }
 
+/* SCROLL STYLE */
+.modal-content::-webkit-scrollbar{width:6px;}
+.modal-content::-webkit-scrollbar-thumb{
+    background:#2c6fb7;
+    border-radius:10px;
+}
+
+/* INPUT */
 .modal-content input{
     width:100%;
     padding:8px;
@@ -109,18 +122,20 @@ body{
     border:1px solid #ddd;
 }
 
+/* CLOSE */
 .close{
     float:right;
     font-size:22px;
     cursor:pointer;
 }
 
+/* ANIMATION */
 @keyframes fadeIn{
     from{transform:translateY(-20px);opacity:0;}
     to{transform:translateY(0);opacity:1;}
 }
 
-/* ================= BUTTON ================= */
+/* BUTTON */
 button{
     margin-top:20px;
     padding:12px 25px;
@@ -132,7 +147,7 @@ button{
     cursor:pointer;
 }
 
-/* ================= RESPONSIVE ================= */
+/* RESPONSIVE */
 @media(max-width:768px){
     .card-data{flex-direction:column;}
     .data-content,.data-bg{width:100%;}
@@ -143,7 +158,6 @@ button{
 
 <body>
 
-<!-- BUTTON -->
 <button class="toggle-btn" onclick="openModal()">📊 Input Data</button>
 
 <!-- MODAL -->
@@ -194,7 +208,6 @@ d="M0,224L80,208C160,192,320,160,480,176C640,192,800,256,960,256C1120,256,1280,1
 </svg>
 </div>
 
-<!-- CONTENT -->
 <div class="container" id="capture">
 
 <div class="header">
@@ -260,41 +273,28 @@ d="M0,224L80,208C160,192,320,160,480,176C640,192,800,256,960,256C1120,256,1280,1
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <script>
-function openModal(){
-    document.getElementById("modalForm").style.display = "block";
-}
+function openModal(){document.getElementById("modalForm").style.display="block";}
+function closeModal(){document.getElementById("modalForm").style.display="none";}
+window.onclick=function(e){let m=document.getElementById("modalForm");if(e.target==m){m.style.display="none";}}
 
-function closeModal(){
-    document.getElementById("modalForm").style.display = "none";
-}
-
-window.onclick = function(e){
-    let modal = document.getElementById("modalForm");
-    if(e.target == modal){
-        modal.style.display = "none";
-    }
-}
-
-function formatAngka(x){
-    return new Intl.NumberFormat('id-ID').format(x || 0);
-}
+function formatAngka(x){return new Intl.NumberFormat('id-ID').format(x||0);}
 
 function updateData(){
-    v_pendapatan.innerText = formatAngka(i_pendapatan.value);
-    v_beban.innerText = formatAngka(i_beban.value);
-    v_beban_papat.innerText = formatAngka(i_beban_papat.value);
-    v_beban_lain.innerText = formatAngka(i_beban_lain.value);
-    v_pendapatan_lain.innerText = formatAngka(i_pendapatan_lain.value);
-    v_laba.innerText = formatAngka(i_laba.value);
+    v_pendapatan.innerText=formatAngka(i_pendapatan.value);
+    v_beban.innerText=formatAngka(i_beban.value);
+    v_beban_papat.innerText=formatAngka(i_beban_papat.value);
+    v_beban_lain.innerText=formatAngka(i_beban_lain.value);
+    v_pendapatan_lain.innerText=formatAngka(i_pendapatan_lain.value);
+    v_laba.innerText=formatAngka(i_laba.value);
 
-    r_kpmm.innerText = i_kpmm.value + "%";
-    r_nplnet.innerText = i_nplnet.value + "%";
-    r_nplgross.innerText = i_nplgross.value + "%";
-    r_roa.innerText = i_roa.value + "%";
-    r_bopo.innerText = i_bopo.value + "%";
-    r_nim.innerText = i_nim.value + "%";
-    r_ldr.innerText = i_ldr.value + "%";
-    r_cash.innerText = i_cash.value + "%";
+    r_kpmm.innerText=i_kpmm.value+"%";
+    r_nplnet.innerText=i_nplnet.value+"%";
+    r_nplgross.innerText=i_nplgross.value+"%";
+    r_roa.innerText=i_roa.value+"%";
+    r_bopo.innerText=i_bopo.value+"%";
+    r_nim.innerText=i_nim.value+"%";
+    r_ldr.innerText=i_ldr.value+"%";
+    r_cash.innerText=i_cash.value+"%";
 }
 
 function downloadPNG(){
