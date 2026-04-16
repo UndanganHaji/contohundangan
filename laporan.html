@@ -181,22 +181,19 @@ button{
 
 <b>Input Data</b>
 
-<label>Pendapatan</label>
+<label>Pendapatan Operasional</label>
 <input id="i_pendapatan">
 
-<label>Beban</label>
+<label>Beban Operasional</label>
 <input id="i_beban">
 
-<label>Beban Papat</label>
+<label>Pendapatan Non Operasional</label>
 <input id="i_beban_papat">
 
-<label>Beban Lain</label>
+<label>Beban Non Operasional</label>
 <input id="i_beban_lain">
 
-<label>Pendapatan Non Operasional</label>
-<input id="i_pendapatan_lain">
-
-<label>Laba</label>
+<label>Laba Rugi Thn Berjalan</label>
 <input id="i_laba">
 
 <b>Rasio (%)</b>
@@ -244,12 +241,11 @@ button{
 <div class="data-content">
 <div class="grid-2">
 
-<div class="item"><div class="icon"><i class="fas fa-coins"></i></div>Pendapatan <span id="v_pendapatan">0</span></div>
-<div class="item"><div class="icon"><i class="fas fa-chart-line"></i></div>Beban <span id="v_beban">0</span></div>
-<div class="item"><div class="icon"><i class="fas fa-file-invoice"></i></div>Beban Papat <span id="v_beban_papat">0</span></div>
-<div class="item"><div class="icon"><i class="fas fa-wallet"></i></div>Beban Lain <span id="v_beban_lain">0</span></div>
-<div class="item"><div class="icon"><i class="fas fa-money-bill-wave"></i></div>Pendapatan Non Ops <span id="v_pendapatan_lain">0</span></div>
-<div class="item"><div class="icon"><i class="fas fa-trophy"></i></div>Laba <span id="v_laba">0</span></div>
+<div class="item"><div class="icon"><i class="fas fa-coins"></i></div>Pendapatan Operasional<span id="v_pendapatan">0</span></div>
+<div class="item"><div class="icon"><i class="fas fa-chart-line"></i></div>Beban Operasional<span id="v_beban">0</span></div>
+<div class="item"><div class="icon"><i class="fas fa-file-invoice"></i></div>Pendapatan Non Operasional<span id="v_beban_papat">0</span></div>
+<div class="item"><div class="icon"><i class="fas fa-wallet"></i></div>Beban Non Operasional <span id="v_beban_lain">0</span></div>
+<div class="item"><div class="icon"><i class="fas fa-trophy"></i></div>Laba Rugi Thn Berjalan <span id="v_laba">0</span></div>
 
 </div>
 </div>
@@ -340,7 +336,6 @@ function updateData(){
     v_beban.innerText = formatRupiahAkhir(clean(i_beban.value));
     v_beban_papat.innerText = formatRupiahAkhir(clean(i_beban_papat.value));
     v_beban_lain.innerText = formatRupiahAkhir(clean(i_beban_lain.value));
-    v_pendapatan_lain.innerText = formatRupiahAkhir(clean(i_pendapatan_lain.value));
     v_laba.innerText = formatRupiahAkhir(clean(i_laba.value));
 
     r_kpmm.innerText = formatPersen(i_kpmm.value);
