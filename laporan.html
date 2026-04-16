@@ -83,6 +83,11 @@ body{
     background:white;
     padding:18px;
     border-radius:0 20px 20px 20px;
+    transition:0.3s;
+}
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 20px rgba(0,0,0,0.1);
 }
 
 /* DATA */
@@ -93,9 +98,9 @@ body{
 .item{
     display:flex;
     align-items:center;
-    gap:8px;
+    gap:10px;
     background:#f4f9ff;
-    padding:8px;
+    padding:12px;
     border-radius:12px;
 }
 
@@ -110,7 +115,20 @@ body{
     color:white;
 }
 
-.value{font-weight:600;}
+.text{
+    display:flex;
+    flex-direction:column;
+}
+
+.label{
+    font-size:13px;
+    color:#555;
+}
+
+.value{
+    font-size:16px;
+    font-weight:600;
+}
 
 .data-bg{
     width:40%;
@@ -188,7 +206,7 @@ button{
 <input id="i_beban">
 
 <label>Pendapatan Non Operasional</label>
-<input id="i_beban_papat">
+<input id="i_pendapatan_non">
 
 <label>Beban Non Operasional</label>
 <input id="i_beban_lain">
@@ -231,7 +249,6 @@ button{
 <h1>Ikhtisar Utama Keuangan</h1>
 <h1>LAPORAN TAHUNAN PT. BPR PRIMA NADI </h1>
 <div class="badge">TAHUN 2025</div>
-    
 </div>
 
 <div class="section">
@@ -241,11 +258,45 @@ button{
 <div class="data-content">
 <div class="grid-2">
 
-<div class="item"><div class="icon"><i class="fas fa-coins"></i></div>Pendapatan Operasional<span id="v_pendapatan">0</span></div>
-<div class="item"><div class="icon"><i class="fas fa-chart-line"></i></div>Beban Operasional<span id="v_beban">0</span></div>
-<div class="item"><div class="icon"><i class="fas fa-file-invoice"></i></div>Pendapatan Non Operasional<span id="v_beban_papat">0</span></div>
-<div class="item"><div class="icon"><i class="fas fa-wallet"></i></div>Beban Non Operasional <span id="v_beban_lain">0</span></div>
-<div class="item"><div class="icon"><i class="fas fa-trophy"></i></div>Laba Rugi Thn Berjalan <span id="v_laba">0</span></div>
+<div class="item">
+<div class="icon"><i class="fas fa-coins"></i></div>
+<div class="text">
+<div class="label">Pendapatan Operasional</div>
+<div class="value" id="v_pendapatan">0</div>
+</div>
+</div>
+
+<div class="item">
+<div class="icon"><i class="fas fa-chart-line"></i></div>
+<div class="text">
+<div class="label">Beban Operasional</div>
+<div class="value" id="v_beban">0</div>
+</div>
+</div>
+
+<div class="item">
+<div class="icon"><i class="fas fa-file-invoice"></i></div>
+<div class="text">
+<div class="label">Pendapatan Non Operasional</div>
+<div class="value" id="v_pendapatan_non">0</div>
+</div>
+</div>
+
+<div class="item">
+<div class="icon"><i class="fas fa-wallet"></i></div>
+<div class="text">
+<div class="label">Beban Non Operasional</div>
+<div class="value" id="v_beban_lain">0</div>
+</div>
+</div>
+
+<div class="item">
+<div class="icon"><i class="fas fa-trophy"></i></div>
+<div class="text">
+<div class="label">Laba Rugi Thn Berjalan</div>
+<div class="value" id="v_laba">0</div>
+</div>
+</div>
 
 </div>
 </div>
@@ -254,6 +305,7 @@ button{
 </div>
 </div>
 
+<!-- RASIO tetap -->
 <div class="section">
 <div class="section-title">Rasio Keuangan</div>
 
@@ -280,48 +332,35 @@ button{
 
 </div>
 
-<!-- LIBRARY PDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
-function formatAngka(x){return new Intl.NumberFormat('id-ID').format(x||0);}
+// AUTO FORMAT
+document.querySelectorAll(".form-box input").forEach(el=>{
+    el.addEventListener("input",()=>formatInput(el));
+});
+
 function clean(x){return x.replace(/\./g,"");}
+
 function formatInput(el){
     let val = el.value;
-
-    // CEK: DATA atau RASIO
     const isRasio = el.id.includes("kpmm") || el.id.includes("npl") || el.id.includes("roa") || el.id.includes("bopo") || el.id.includes("nim") || el.id.includes("ldr") || el.id.includes("cash");
 
     if(!isRasio){
-        // ======================
-        // FORMAT DATA (RUPIAH)
-        // ======================
-        val = val.replace(/\D/g,""); // hanya angka
-
-        if(val){
-            el.value = new Intl.NumberFormat('id-ID').format(val);
-        } else {
-            el.value = "";
-        }
-
+        val = val.replace(/\D/g,"");
+        el.value = val ? new Intl.NumberFormat('id-ID').format(val) : "";
     } else {
-        // ======================
-        // FORMAT RASIO (%)
-        // ======================
-        val = val.replace(/[^0-9,]/g,""); // hanya angka & koma
-
-        // hanya boleh 1 koma
+        val = val.replace(/[^0-9,]/g,"");
         let parts = val.split(",");
         if(parts.length > 2){
             val = parts[0] + "," + parts[1];
         }
-
         el.value = val;
     }
 }
 
-function formatRupiahAkhir(x){
+function formatRupiah(x){
     return new Intl.NumberFormat('id-ID').format(x||0) + ",-";
 }
 
@@ -332,11 +371,11 @@ function formatPersen(x){
 }
 
 function updateData(){
-    v_pendapatan.innerText = formatRupiahAkhir(clean(i_pendapatan.value));
-    v_beban.innerText = formatRupiahAkhir(clean(i_beban.value));
-    v_beban_papat.innerText = formatRupiahAkhir(clean(i_beban_papat.value));
-    v_beban_lain.innerText = formatRupiahAkhir(clean(i_beban_lain.value));
-    v_laba.innerText = formatRupiahAkhir(clean(i_laba.value));
+    v_pendapatan.innerText = formatRupiah(clean(i_pendapatan.value));
+    v_beban.innerText = formatRupiah(clean(i_beban.value));
+    v_pendapatan_non.innerText = formatRupiah(clean(i_pendapatan_non.value));
+    v_beban_lain.innerText = formatRupiah(clean(i_beban_lain.value));
+    v_laba.innerText = formatRupiah(clean(i_laba.value));
 
     r_kpmm.innerText = formatPersen(i_kpmm.value);
     r_nplnet.innerText = formatPersen(i_nplnet.value);
@@ -347,54 +386,26 @@ function updateData(){
     r_ldr.innerText = formatPersen(i_ldr.value);
     r_cash.innerText = formatPersen(i_cash.value);
 
-    saveData();
+    localStorage.setItem("laporan",JSON.stringify(Object.fromEntries(
+        [...document.querySelectorAll(".form-box input")].map(i=>[i.id,i.value])
+    )));
     closeForm();
 }
 
-function saveData(){
-    let data={};
-    document.querySelectorAll(".form-box input").forEach(i=>{
-        data[i.id]=i.value;
-    });
-    localStorage.setItem("laporan",JSON.stringify(data));
-}
-
 function loadData(){
-    let data=JSON.parse(localStorage.getItem("laporan"));
-    if(!data)return;
-
-    document.querySelectorAll(".form-box input").forEach(i=>{
-        i.value=data[i.id]||"";
-    });
-
+    let data = JSON.parse(localStorage.getItem("laporan"));
+    if(!data) return;
+    Object.keys(data).forEach(k=>document.getElementById(k).value=data[k]);
     updateData();
 }
 
-/* EXPORT PDF (TAMBAHAN SAJA) */
 async function exportPDF(){
     const { jsPDF } = window.jspdf;
-    const element = document.querySelector(".container");
-
-    const canvas = await html2canvas(element,{scale:2});
+    const canvas = await html2canvas(document.querySelector(".container"),{scale:3});
     const imgData = canvas.toDataURL("image/png");
 
     const pdf = new jsPDF('p','mm','a4');
-    const width = 210;
-    const height = canvas.height * width / canvas.width;
-
-    let position = 0;
-    let heightLeft = height;
-
-    pdf.addImage(imgData,'PNG',0,position,width,height);
-    heightLeft -= 297;
-
-    while(heightLeft > 0){
-        position = heightLeft - height;
-        pdf.addPage();
-        pdf.addImage(imgData,'PNG',0,position,width,height);
-        heightLeft -= 297;
-    }
-
+    pdf.addImage(imgData,'PNG',0,0,210,canvas.height*210/canvas.width);
     pdf.save("Laporan_Keuangan.pdf");
 }
 
